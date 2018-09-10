@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
+import           Text.Pandoc.Options (WriterOptions, writerHTMLMathMethod, HTMLMathMethod(MathJax))
 
 
 --------------------------------------------------------------------------------
@@ -27,7 +28,12 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
-
+    match "math/*" $ do
+        route $ setExtension "html"
+        compile $ (pandocCompilerWith defaultHakyllReaderOptions (defaultHakyllWriterOptions { writerHTMLMathMethod = MathJax "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"}))
+            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= relativizeUrls
+        
     create ["archive.html"] $ do
         route idRoute
         compile $ do

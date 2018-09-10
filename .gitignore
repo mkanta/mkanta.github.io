@@ -37,6 +37,7 @@ tramp
 # Org-mode
 .org-id-locations
 *_archive
+howto.org
 
 # flymake-mode
 *_flymake.*

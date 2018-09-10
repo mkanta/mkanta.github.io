@@ -1,7 +1,21 @@
 ---
 title: example post
 ---
+## With a list
+ - first item
+ - second item
+ 
+## A numeric list
+ 1. counted first item
+ 2. counted second item
+ 
+## An itemized list
+☿ ☍ ☉
+: mercury opposition sun
 
+☿ ☌ ♃
+: mercury conjunction jupiter
+ 
 Mauris in lorem nisl. Maecenas tempus facilisis ante, eget viverra nisl
 tincidunt et. Donec turpis lectus, mattis ac malesuada a, accumsan eu libero.
 Morbi condimentum, tortor et tincidunt ullamcorper, sem quam pretium nulla, id
