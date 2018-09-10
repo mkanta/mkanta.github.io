@@ -1,0 +1,18 @@
+---
+title: Org Mode Title Metadata
+published: 2018-09-06
+---
+#+Title: Org Title
+* An Org-Mode Example
+With some text here.
+** With a list
+ - first item
+ - second item
+** A numeric list
+ 1) counted first item
+ 2) counted second item
+** An itemized list
+ - ☿ ☍ ☉ :: mercury opposition sun
+ - ☿ ☌ ♃ :: mercury conjunction jupiter
+** Some Latex
+The partial derivative $\partial_x f$.
