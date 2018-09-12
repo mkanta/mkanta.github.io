@@ -28,10 +28,12 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
+            
     match "math/*" $ do
         route $ setExtension "html"
-        compile $ (pandocCompilerWith defaultHakyllReaderOptions (defaultHakyllWriterOptions { writerHTMLMathMethod = MathJax "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"}))
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        compile $ (pandocCompilerWith defaultHakyllReaderOptions (defaultHakyllWriterOptions { writerHTMLMathMethod = MathJax ""}))
+    --      >>= loadAndApplyTemplate "templates/math.html" mathCtx
+            >>= loadAndApplyTemplate "templates/default.html" mathCtx
             >>= relativizeUrls
         
     create ["archive.html"] $ do
@@ -53,8 +55,10 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
+            maths <- loadAll "math/*"
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
+                    listField "math" defaultContext (return maths) `mappend`
                     constField "title" "Home"                `mappend`
                     defaultContext
 
@@ -72,3 +76,11 @@ postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
 
+mathCtx :: Context String
+mathCtx =
+  constField "mathjax" (scriptConfig ++ mathJax ++ scriptClose)
+  `mappend` defaultContext
+  where
+    scriptConfig = "<script type=\"text/javascript\" async src="
+    mathJax="\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML\""
+    scriptClose="></script>"

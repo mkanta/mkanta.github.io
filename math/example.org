@@ -3,5 +3,10 @@ title: Mathjax Example
 published: 2018-09-06
 ---
 #+Title: Org Title
-* An MathJax Example
+* A MathJax Example
 The partial derivative $\partial_x f$.
+And an equation environment:
+\begin{equation}
+\sum_{k=1}^nx^n
+\end{equation}
+Which looks fairly decent.
