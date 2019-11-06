@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-11-06 Wed 19:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Functional Programming Techniques in R</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Matthias Kanta" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
+
+<script type="text/javascript" src="../js/org-info.js">
+/**
+ *
+ * @source: ../js/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in ../js/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in ../js/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "3");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Functional Programming Techniques in R</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org23ac033">1. Why</a></li>
+<li><a href="#orga8c4516">2. Main Techniques</a></li>
+<li><a href="#orga160afd">3. Details of Functional Techniques</a>
+<ul>
+<li><a href="#org45136bb">3.1. Simple Function Manipulation</a></li>
+<li><a href="#orga661263">3.2. Loop Removal</a></li>
+</ul>
+</li>
+<li><a href="#orga46b406">4. How About R</a>
+<ul>
+<li><a href="#orgeba7f1c">4.1. Native Tools</a></li>
+<li><a href="#org9dc27d1">4.2. Additional Libraries (functional, purrr)</a></li>
+<li><a href="#org4b87b64">4.3. External Bindings to Functional Programming Languages</a>
+<ul>
+<li><a href="#org6c22926">4.3.1. OCAML</a></li>
+<li><a href="#org5faa7e1">4.3.2. F#</a></li>
+<li><a href="#orgb9079e4">4.3.3. HaskellR</a></li>
+<li><a href="#org469a313">4.3.4. PureR?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgcf0174b">5. Concerns</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org23ac033" class="outline-2">
+<h2 id="org23ac033"><span class="section-number-2">1</span> Why</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Functional programming yields code with a better logical structure. It allows to
+express intent more explicitly and succinctly than imperative programming where
+code is often cluttered with resource management, most notably memory management
+by way of variables. 
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">foldl</span> (<span style="color: #a0522d;">*</span>) 1 <span style="color: #a0522d;">$</span> take 5 <span style="color: #a0522d;">$</span> filter odd [1<span style="color: #a0522d;">..</span>]
+</pre>
+</div>
+<p>
+It addresses:
+</p>
+<dl class="org-dl">
+<dt>Mission Creep</dt><dd>Many languages are nowadays used for purposes they weren't
+originally designed for. (R, Javascript, Python)</dd>
+<dt>Code Management Issues</dt><dd><p>
+Code changes, refactoring, code extension. 
+Programmers don't like to comment or read documentation. Functional code 
+is often more self-explanatory. 
+</p>
+
+<p>
+If typed  functional programming is used compiler will 
+detect most refactoring errors, but smaller self-contained code snippets
+make things easier even in the absence of static typing. 
+</p>
+
+<p>
+Do more work in less time.
+</p>
+
+<p>
+Examples: Emacs, Maxima, both huge codebases in LISP, well and alive since 
+the 1970's where other projects have failed.
+</p></dd>
+<dt>Psychology</dt><dd>Programming languages affect the thinking of the programmer.
+Since functional programming is deeply rooted in logic, the expectation
+is that the thinking of its users will be more precise.</dd>
+<dt>Possible Paradigm Change</dt><dd>Quantum Computing
+No more access to memory during computation, imperative code needs to
+be rewritten for sure.</dd>
+<dt>Parallelism</dt><dd>Perhaps not an issue for R.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orga8c4516" class="outline-2">
+<h2 id="orga8c4516"><span class="section-number-2">2</span> Main Techniques</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">divisible_by</span> n x<span style="color: #a0522d;">=</span> mod x n <span style="color: #a0522d;">==</span> 0
+<span style="color: #0000ff;">odd</span> <span style="color: #a0522d;">=</span> not <span style="color: #a0522d;">.</span> divisible_by 2
+<span style="color: #0000ff;">foldl</span> (<span style="color: #a0522d;">*</span>) 1 <span style="color: #a0522d;">$</span> take 5 <span style="color: #a0522d;">$</span> filter odd [1<span style="color: #a0522d;">..</span>]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Combine short code snippets, called &lambda; expressions, using functors. 
+Functors are functions that accept functions as arguments and apply them to 
+some data-structure or construct new functions from its arguments.</li>
+<li>Replace most loops by easily recognizable iteration constructs where one or
+more of these code snippet is applied to a list</li>
+<li>Use recursion for ore obscure iterations not matching any of the iteration
+archetypes.</li>
+</ul>
+
+<p>
+Examples: Lisp and Lisp-like dialects, ML and dialects (SML, Ocaml), Haskell.
+</p>
+</div>
+</div>
+<div id="outline-container-orga160afd" class="outline-2">
+<h2 id="orga160afd"><span class="section-number-2">3</span> Details of Functional Techniques</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-org45136bb" class="outline-3">
+<h3 id="org45136bb"><span class="section-number-3">3.1</span> Simple Function Manipulation</h3>
+<div class="outline-text-3" id="text-3-1">
+<dl class="org-dl">
+<dt>Simple Function Construction</dt><dd>All functional languages provide a 
+constructor for function allowing to create new functions on the fly.
+This constructor is often called a <i>lambda</i> and creates a function
+from an argument list and an expression.</dd>
+<dt>Functions are Regular Datatypes</dt><dd>The expressions generated by the λ
+construction are regular data-types, so they can be assigned to a
+variable to have a reference for later use, they can be handed as
+arguments to other functions or returned from functions.</dd>
+<dt>Combining Code Snippets</dt><dd>Function composition, tensoring et al, very
+lanuage dependent.</dd>
+<dt>Easy Currying</dt><dd>New functions are obtained from partial
+evaluations. A Haskell example:</dd>
+</dl>
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #0000ff;">+</span>)<span style="color: #a0522d;">::</span><span style="color: #228b22;">Num</span> a<span style="color: #a0522d;">=&gt;</span>a<span style="color: #a0522d;">-&gt;</span>a<span style="color: #a0522d;">-&gt;</span>a
+</pre>
+</div>
+<p>
+This is right associative, ie <code>a-&gt;a-&gt;a</code> means <code>a-&gt;(a-&gt;a)</code>, which
+implies that this is a function of one argument of type <code>a</code> returning
+a function <code>a-&gt;a</code>.
+As a consequence, the <code>inc</code> function can be obtained by currying:
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">inc</span> <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Num</span> a <span style="color: #a0522d;">=&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a
+<span style="color: #0000ff;">inc</span> <span style="color: #a0522d;">=</span> (<span style="color: #a0522d;">+</span>) 1
+</pre>
+</div>
+<p>
+All functions are considered to have arity 1: They take one argument and 
+return another function. Thus, new functions can be created from existing 
+ones by a process reminiscent of partial evaluation. This process is 
+called <i>Currying</i>. 
+</p>
+</div>
+</div>
+<div id="outline-container-orga661263" class="outline-3">
+<h3 id="orga661263"><span class="section-number-3">3.2</span> Loop Removal</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Functional languages go a step further than just removing the insidious <i>goto</i> 
+statement, they remove all loops and replace them by a few easily recognizable
+repeat-patterns.
+</p>
+<dl class="org-dl">
+<dt>Mapping</dt><dd>Runs code on a list and returns a list of results.</dd>
+</dl>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">map</span> ((0) <span style="color: #a0522d;">-</span>) [1<span style="color: #a0522d;">..</span>5] <span style="color: #b22222;">-- </span><span style="color: #b22222;">change signs of list elements</span>
+</pre>
+</div>
+<dl class="org-dl">
+<dt>Filtering</dt><dd>Runs a boolean expression on a list and returns a list of
+elements satisfying the condition</dd>
+</dl>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">filter</span> (<span style="color: #a0522d;">&lt;</span> 0) [<span style="color: #a0522d;">-</span>5<span style="color: #a0522d;">..</span>5] <span style="color: #b22222;">-- </span><span style="color: #b22222;">get sublist of negative elements</span>
+</pre>
+</div>
+<dl class="org-dl">
+<dt>Folding</dt><dd>Runs code on an initial value and a list and returns a value
+accumulated by the code.</dd>
+</dl>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">foldl</span> (<span style="color: #a0522d;">*</span>) 1 [1<span style="color: #a0522d;">..</span>5]   <span style="color: #b22222;">-- </span><span style="color: #b22222;">factorial 5!</span>
+</pre>
+</div>
+<dl class="org-dl">
+<dt>Zipping</dt><dd>Runs code on two lists to combine them into one list. There
+are usually variations of that for handling more than two
+lists at the time.</dd>
+</dl>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">zipWith</span> (<span style="color: #a0522d;">+</span>) [1<span style="color: #a0522d;">..</span>5] [1<span style="color: #a0522d;">..</span>5]  <span style="color: #b22222;">-- </span><span style="color: #b22222;">adds lists componentwise</span>
+</pre>
+</div>
+<p>
+Everything that doesn't fit simple combinations of these patterns can be 
+handled by explicit recursion.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga46b406" class="outline-2">
+<h2 id="orga46b406"><span class="section-number-2">4</span> How About R</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Based on Scheme, a Lisp dialect, inherently functional.</li>
+<li>Designed for flexibility on the command line. This often turns into a 
+nightmare in terms of software architecture. Some problems:
+<ul class="org-ul">
+<li>Mixing positional and named parameters in functions.</li>
+<li>S3 object system is very flexible.</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgeba7f1c" class="outline-3">
+<h3 id="orgeba7f1c"><span class="section-number-3">4.1</span> Native Tools</h3>
+<div class="outline-text-3" id="text-4-1">
+<dl class="org-dl">
+<dt>Functions as Datatypes</dt><dd><p>
+This comes very natural in R and is used most
+notably in functions like <code>optimise</code>. A common procedure to perform a 
+maximum likelihood estimation:
+</p>
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #0000ff;">logli.poisson</span> <span style="color: #008b8b;">&lt;-</span> <span style="color: #a020f0;">function</span>(data) {
+   ld <span style="color: #008b8b;">&lt;-</span> length(data)
+   sd <span style="color: #008b8b;">&lt;-</span> sum(data)
+   <span style="color: #a020f0;">function</span>(param) sd*log(param)-ld*param
+}
+</pre>
+</div>
+<p>
+This can be fed into the <code>optimise</code> function:
+</p>
+<div class="org-src-container">
+<pre class="src src-R">optimise(logli.poisson,c(0:100),maximum=<span style="color: #228b22;">TRUE</span>)
+</pre>
+</div>
+<p>
+This uses currying, making the procedure more efficient. Without currying 
+the temptation would be to define something like
+</p>
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #0000ff;">loglimp.poisson</span><span style="color: #008b8b;">&lt;-</span><span style="color: #a020f0;">function</span>(param,data) sum(data)*log(param)-length(data)*param
+</pre>
+</div>
+<p>
+and then to pass the data argument through to the <code>optimise</code> function:
+</p>
+<div class="org-src-container">
+<pre class="src src-R">optimise(loglimp.poisson,c(0:100),data=x,maximum=<span style="color: #228b22;">TRUE</span>)
+</pre>
+</div>
+<p>
+but this would have to recalculate the length of the data vector and
+the sum of the data multiple times during the optimisation process.
+Of course the unnecessary recomputations can be optimised away doing
+something like: 
+</p>
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #0000ff;">loglimpx.poisson</span> <span style="color: #008b8b;">&lt;-</span> <span style="color: #a020f0;">function</span>(param,datasum,datalength){
+                       datasum*log(param)-datalength*param
+                    }
+</pre>
+</div>
+<p>
+and passing the data sum and length through as extra arguments
+to <code>optimise</code>. 
+</p>
+
+<p>
+This is a case where the flexibility becomes a curse
+and leads to messy interfaces, especially when something other than
+the Poisson likelihood needs to be used, ie a uniform distribution
+on positive data where the sum of the data is not a sufficient statistic.
+</p></dd>
+<dt>Currying</dt><dd><p>
+Surprisingly easy but somewhat hampered by parentheses.
+See maximum likelihood example.
+</p>
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #0000ff;">add</span> <span style="color: #008b8b;">&lt;-</span> <span style="color: #a020f0;">function</span>(x) <span style="color: #a020f0;">function</span>(y) x+y;
+add(2)(3);
+inc <span style="color: #008b8b;">&lt;-</span> add(1);
+inc(5);
+</pre>
+</div></dd>
+<dt>Loop Removal</dt><dd>Quite good but a bit non-standard. Mapping functions
+are implemented as <code>apply</code> functions such as <code>lapply</code>, <code>vapply</code> and
+<code>apply</code> proper, but also see <code>Map</code> from <code>funprog</code> in base package.
+Folding is implemented as <code>Reduce</code> in the same package, which also
+provides <code>Filter</code>.
+<dl class="org-dl">
+<dt>Mapping</dt><dd><p>
+Almost the same as above, at least on vectors. Based on
+<code>mapply</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-R">Map(<span style="color: #a020f0;">function</span>(x) -x,c(1:5)); <span style="color: #b22222;">#</span><span style="color: #b22222;">change signs</span>
+</pre>
+</div></dd>
+<dt>Filtering</dt><dd><p>
+Dito
+</p>
+<div class="org-src-container">
+<pre class="src src-R">Filter(<span style="color: #a020f0;">function</span>(x) x &lt; 0, c(-5:5)); <span style="color: #b22222;"># </span><span style="color: #b22222;">vector of negative values</span>
+</pre>
+</div></dd>
+<dt>Folding</dt><dd><p>
+This is called <code>Reduce</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-R">Reduce(<span style="color: #a020f0;">function</span>(x,y) x*y, c(1:5),1); <span style="color: #b22222;">#</span><span style="color: #b22222;">factorial</span>
+</pre>
+</div></dd>
+<dt>Zipping</dt><dd><p>
+This can actually flexibly be done with <code>Map</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-R">Map(<span style="color: #a020f0;">function</span>(x,y) x+y,c(1:5),c(1:5))
+<span style="color: #b22222;">#</span><span style="color: #b22222;">+END_SRC or simply</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">+BEGIN_SRC R</span>
+Map(<span style="color: #000000; background-color: #ffffff;">`+`</span>,c(1:5),c(1:5))
+</pre>
+</div></dd>
+</dl></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org9dc27d1" class="outline-3">
+<h3 id="org9dc27d1"><span class="section-number-3">4.2</span> Additional Libraries (functional, purrr)</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Whilst everything is there, some things need some massaging. This is where
+additional packages like <code>functional</code> or <code>purrr</code> come in. They provide 
+</p>
+<ul class="org-ul">
+<li>function composition with <code>Compose</code> or <code>compose</code>, respectively</li>
+<li>currying with <code>Curry</code> or <code>partial</code>, respectively</li>
+<li><code>purrr</code> also reimplements the loop functions</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4b87b64" class="outline-3">
+<h3 id="org4b87b64"><span class="section-number-3">4.3</span> External Bindings to Functional Programming Languages</h3>
+<div class="outline-text-3" id="text-4-3">
+</div><div id="outline-container-org6c22926" class="outline-4">
+<h4 id="org6c22926"><span class="section-number-4">4.3.1</span> OCAML</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+<a href="https://github.com/pveber/ocaml-r">https://github.com/pveber/ocaml-r</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org5faa7e1" class="outline-4">
+<h4 id="org5faa7e1"><span class="section-number-4">4.3.2</span> F#</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+<a href="https://bluemountaincapital.github.io/FSharpRProvider/">https://bluemountaincapital.github.io/FSharpRProvider/</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgb9079e4" class="outline-4">
+<h4 id="orgb9079e4"><span class="section-number-4">4.3.3</span> HaskellR</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<p>
+A topic for another day.
+</p>
+</div>
+</div>
+<div id="outline-container-org469a313" class="outline-4">
+<h4 id="org469a313"><span class="section-number-4">4.3.4</span> PureR?</h4>
+<div class="outline-text-4" id="text-4-3-4">
+<p>
+Purescript is a Haskell-style language originally created to generate 
+javascript code. Now there are backends for
+</p>
+<ul class="org-ul">
+<li>C: called pureC</li>
+<li>Erlang: purerl</li>
+<li>C++, Go: purescript-native</li>
+</ul>
+<p>
+An R backend to PureScript seems certainly possible and would be the ideal
+solution, so if someone could be found with the necessary resources&#x2026;
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcf0174b" class="outline-2">
+<h2 id="orgcf0174b"><span class="section-number-2">5</span> Concerns</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Efficiency: tail-end recursion, lazy evaluation
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #0000ff;">foldl</span> (<span style="color: #a0522d;">*</span>) 1 <span style="color: #a0522d;">$</span> take 5 <span style="color: #a0522d;">$</span> filter odd [1<span style="color: #a0522d;">..</span>]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Matthias Kanta</p>
+<p class="date">Created: 2019-11-06 Wed 19:33</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
