@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-11-06 Wed 19:33 -->
+<!-- 2019-11-07 Thu 16:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functional Programming Techniques in R</title>
@@ -306,34 +306,40 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org23ac033">1. Why</a></li>
-<li><a href="#orga8c4516">2. Main Techniques</a></li>
-<li><a href="#orga160afd">3. Details of Functional Techniques</a>
+<li><a href="#org43ce160">1. Why</a></li>
+<li><a href="#orge24c10c">2. Main Techniques</a></li>
+<li><a href="#org176bbf7">3. Details of Functional Techniques</a>
 <ul>
-<li><a href="#org45136bb">3.1. Simple Function Manipulation</a></li>
-<li><a href="#orga661263">3.2. Loop Removal</a></li>
+<li><a href="#org2eb1d69">3.1. Simple Function Manipulation</a></li>
+<li><a href="#orgf1ee5ce">3.2. Loop Removal</a></li>
 </ul>
 </li>
-<li><a href="#orga46b406">4. How About R</a>
+<li><a href="#org1839cc4">4. How About R</a>
 <ul>
-<li><a href="#orgeba7f1c">4.1. Native Tools</a></li>
-<li><a href="#org9dc27d1">4.2. Additional Libraries (functional, purrr)</a></li>
-<li><a href="#org4b87b64">4.3. External Bindings to Functional Programming Languages</a>
+<li><a href="#org163eaf2">4.1. Native Tools</a>
 <ul>
-<li><a href="#org6c22926">4.3.1. OCAML</a></li>
-<li><a href="#org5faa7e1">4.3.2. F#</a></li>
-<li><a href="#orgb9079e4">4.3.3. HaskellR</a></li>
-<li><a href="#org469a313">4.3.4. PureR?</a></li>
+<li><a href="#orgb8e940c">4.1.1. Functions as Datatypes</a></li>
+<li><a href="#org8fa0daa">4.1.2. Currying</a></li>
+<li><a href="#orgede5018">4.1.3. Loop Removal</a></li>
+</ul>
+</li>
+<li><a href="#orgf1993b0">4.2. Additional Libraries (functional, purrr)</a></li>
+<li><a href="#org7d56de0">4.3. External Bindings to Functional Programming Languages</a>
+<ul>
+<li><a href="#orgb79e5a4">4.3.1. OCAML</a></li>
+<li><a href="#org1f6a084">4.3.2. F#</a></li>
+<li><a href="#org2d0fb1b">4.3.3. HaskellR</a></li>
+<li><a href="#orgd83797c">4.3.4. PureR?</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgcf0174b">5. Concerns</a></li>
+<li><a href="#org5506cae">5. Concerns</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org23ac033" class="outline-2">
-<h2 id="org23ac033"><span class="section-number-2">1</span> Why</h2>
+<div id="outline-container-org43ce160" class="outline-2">
+<h2 id="org43ce160"><span class="section-number-2">1</span> Why</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Functional programming yields code with a better logical structure. It allows to
@@ -381,21 +387,22 @@ be rewritten for sure.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orga8c4516" class="outline-2">
-<h2 id="orga8c4516"><span class="section-number-2">2</span> Main Techniques</h2>
+<div id="outline-container-orge24c10c" class="outline-2">
+<h2 id="orge24c10c"><span class="section-number-2">2</span> Main Techniques</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #0000ff;">divisible_by</span> n x<span style="color: #a0522d;">=</span> mod x n <span style="color: #a0522d;">==</span> 0
+<pre class="src src-haskell"><span style="color: #0000ff;">divisible_by</span> n x <span style="color: #a0522d;">=</span> mod x n <span style="color: #a0522d;">==</span> 0
 <span style="color: #0000ff;">odd</span> <span style="color: #a0522d;">=</span> not <span style="color: #a0522d;">.</span> divisible_by 2
 <span style="color: #0000ff;">foldl</span> (<span style="color: #a0522d;">*</span>) 1 <span style="color: #a0522d;">$</span> take 5 <span style="color: #a0522d;">$</span> filter odd [1<span style="color: #a0522d;">..</span>]
 </pre>
 </div>
 <ul class="org-ul">
-<li>Combine short code snippets, called &lambda; expressions, using functors. 
+<li>Combine short code snippets, sometimes unnamed, called &lambda; expressions, 
+using functors. 
 Functors are functions that accept functions as arguments and apply them to 
 some data-structure or construct new functions from its arguments.</li>
 <li>Replace most loops by easily recognizable iteration constructs where one or
-more of these code snippet is applied to a list</li>
+more of these code snippet is applied to a list.</li>
 <li>Use recursion for ore obscure iterations not matching any of the iteration
 archetypes.</li>
 </ul>
@@ -405,11 +412,11 @@ Examples: Lisp and Lisp-like dialects, ML and dialects (SML, Ocaml), Haskell.
 </p>
 </div>
 </div>
-<div id="outline-container-orga160afd" class="outline-2">
-<h2 id="orga160afd"><span class="section-number-2">3</span> Details of Functional Techniques</h2>
+<div id="outline-container-org176bbf7" class="outline-2">
+<h2 id="org176bbf7"><span class="section-number-2">3</span> Details of Functional Techniques</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org45136bb" class="outline-3">
-<h3 id="org45136bb"><span class="section-number-3">3.1</span> Simple Function Manipulation</h3>
+</div><div id="outline-container-org2eb1d69" class="outline-3">
+<h3 id="org2eb1d69"><span class="section-number-3">3.1</span> Simple Function Manipulation</h3>
 <div class="outline-text-3" id="text-3-1">
 <dl class="org-dl">
 <dt>Simple Function Construction</dt><dd>All functional languages provide a 
@@ -426,18 +433,19 @@ lanuage dependent.</dd>
 evaluations. A Haskell example:</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #0000ff;">+</span>)<span style="color: #a0522d;">::</span><span style="color: #228b22;">Num</span> a<span style="color: #a0522d;">=&gt;</span>a<span style="color: #a0522d;">-&gt;</span>a<span style="color: #a0522d;">-&gt;</span>a
+<pre class="src src-haskell"><span style="color: #0000ff;">divisible_by</span> <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Integral</span> a <span style="color: #a0522d;">=&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a <span style="color: #a0522d;">-&gt;</span> <span style="color: #228b22;">Bool</span>
 </pre>
 </div>
 <p>
-This is right associative, ie <code>a-&gt;a-&gt;a</code> means <code>a-&gt;(a-&gt;a)</code>, which
+This is right associative, ie <code>a-&gt;a-&gt;Bool</code> means <code>a-&gt;(a-&gt;Bool)</code>, which
 implies that this is a function of one argument of type <code>a</code> returning
-a function <code>a-&gt;a</code>.
-As a consequence, the <code>inc</code> function can be obtained by currying:
+a function <code>a-&gt;Bool</code>.
+As a consequence, the <code>odd</code> function can be obtained by currying:
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #0000ff;">inc</span> <span style="color: #a0522d;">::</span> <span style="color: #228b22;">Num</span> a <span style="color: #a0522d;">=&gt;</span> a <span style="color: #a0522d;">-&gt;</span> a
-<span style="color: #0000ff;">inc</span> <span style="color: #a0522d;">=</span> (<span style="color: #a0522d;">+</span>) 1
+<pre class="src src-haskell"><span style="color: #0000ff;">divisible_by</span> n x <span style="color: #a0522d;">=</span> mod x n <span style="color: #a0522d;">==</span> 0
+<span style="color: #0000ff;">even</span> <span style="color: #a0522d;">=</span> divisible_by 2
+<span style="color: #0000ff;">odd</span> <span style="color: #a0522d;">=</span> not <span style="color: #a0522d;">.</span> divisible_by 2
 </pre>
 </div>
 <p>
@@ -448,8 +456,8 @@ called <i>Currying</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-orga661263" class="outline-3">
-<h3 id="orga661263"><span class="section-number-3">3.2</span> Loop Removal</h3>
+<div id="outline-container-orgf1ee5ce" class="outline-3">
+<h3 id="orgf1ee5ce"><span class="section-number-3">3.2</span> Loop Removal</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Functional languages go a step further than just removing the insidious <i>goto</i> 
@@ -468,7 +476,7 @@ repeat-patterns.
 elements satisfying the condition</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #0000ff;">filter</span> (<span style="color: #a0522d;">&lt;</span> 0) [<span style="color: #a0522d;">-</span>5<span style="color: #a0522d;">..</span>5] <span style="color: #b22222;">-- </span><span style="color: #b22222;">get sublist of negative elements</span>
+<pre class="src src-haskell"><span style="color: #0000ff;">filter</span> (divisible_by 2) [1<span style="color: #a0522d;">..</span>5] <span style="color: #b22222;">-- </span><span style="color: #b22222;">get sublist of even elements</span>
 </pre>
 </div>
 <dl class="org-dl">
@@ -495,8 +503,8 @@ handled by explicit recursion.
 </div>
 </div>
 </div>
-<div id="outline-container-orga46b406" class="outline-2">
-<h2 id="orga46b406"><span class="section-number-2">4</span> How About R</h2>
+<div id="outline-container-org1839cc4" class="outline-2">
+<h2 id="org1839cc4"><span class="section-number-2">4</span> How About R</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Based on Scheme, a Lisp dialect, inherently functional.</li>
@@ -508,11 +516,13 @@ nightmare in terms of software architecture. Some problems:
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgeba7f1c" class="outline-3">
-<h3 id="orgeba7f1c"><span class="section-number-3">4.1</span> Native Tools</h3>
+<div id="outline-container-org163eaf2" class="outline-3">
+<h3 id="org163eaf2"><span class="section-number-3">4.1</span> Native Tools</h3>
 <div class="outline-text-3" id="text-4-1">
-<dl class="org-dl">
-<dt>Functions as Datatypes</dt><dd><p>
+</div><div id="outline-container-orgb8e940c" class="outline-4">
+<h4 id="orgb8e940c"><span class="section-number-4">4.1.1</span> Functions as Datatypes</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
 This comes very natural in R and is used most
 notably in functions like <code>optimise</code>. A common procedure to perform a 
 maximum likelihood estimation:
@@ -529,19 +539,19 @@ maximum likelihood estimation:
 This can be fed into the <code>optimise</code> function:
 </p>
 <div class="org-src-container">
-<pre class="src src-R">optimise(logli.poisson,c(0:100),maximum=<span style="color: #228b22;">TRUE</span>)
+<pre class="src src-R">optimise(logli.poisson(x),c(0:100),maximum=<span style="color: #228b22;">TRUE</span>)
 </pre>
 </div>
 <p>
-This uses currying, making the procedure more efficient. Without currying 
-the temptation would be to define something like
+This uses currying, resulting in efficient code and an extensible interface. 
+Without currying the temptation would be to define something like
 </p>
 <div class="org-src-container">
 <pre class="src src-R"><span style="color: #0000ff;">loglimp.poisson</span><span style="color: #008b8b;">&lt;-</span><span style="color: #a020f0;">function</span>(param,data) sum(data)*log(param)-length(data)*param
 </pre>
 </div>
 <p>
-and then to pass the data argument through to the <code>optimise</code> function:
+and then to pass the data argument through the <code>optimise</code> function:
 </p>
 <div class="org-src-container">
 <pre class="src src-R">optimise(loglimp.poisson,c(0:100),data=x,maximum=<span style="color: #228b22;">TRUE</span>)
@@ -569,23 +579,35 @@ This is a case where the flexibility becomes a curse
 and leads to messy interfaces, especially when something other than
 the Poisson likelihood needs to be used, ie a uniform distribution
 on positive data where the sum of the data is not a sufficient statistic.
-</p></dd>
-<dt>Currying</dt><dd><p>
+</p>
+</div>
+</div>
+<div id="outline-container-org8fa0daa" class="outline-4">
+<h4 id="org8fa0daa"><span class="section-number-4">4.1.2</span> Currying</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<p>
 Surprisingly easy but somewhat hampered by parentheses.
 See maximum likelihood example.
 </p>
 <div class="org-src-container">
-<pre class="src src-R"><span style="color: #0000ff;">add</span> <span style="color: #008b8b;">&lt;-</span> <span style="color: #a020f0;">function</span>(x) <span style="color: #a020f0;">function</span>(y) x+y;
-add(2)(3);
-inc <span style="color: #008b8b;">&lt;-</span> add(1);
-inc(5);
+<pre class="src src-R"><span style="color: #0000ff;">divisible_by</span> <span style="color: #008b8b;">&lt;-</span> <span style="color: #a020f0;">function</span>(n) <span style="color: #a020f0;">function</span>(x) x<span style="color: #008b8b;">%%</span>n == 0
+divisible_by(2)(3)
+<span style="color: #228b22;">FALSE</span>
+even <span style="color: #008b8b;">&lt;-</span> divisible_by(2)
 </pre>
-</div></dd>
-<dt>Loop Removal</dt><dd>Quite good but a bit non-standard. Mapping functions
+</div>
+</div>
+</div>
+<div id="outline-container-orgede5018" class="outline-4">
+<h4 id="orgede5018"><span class="section-number-4">4.1.3</span> Loop Removal</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<p>
+Quite good but a bit non-standard. Mapping functions
 are implemented as <code>apply</code> functions such as <code>lapply</code>, <code>vapply</code> and
 <code>apply</code> proper, but also see <code>Map</code> from <code>funprog</code> in base package.
 Folding is implemented as <code>Reduce</code> in the same package, which also
 provides <code>Filter</code>.
+</p>
 <dl class="org-dl">
 <dt>Mapping</dt><dd><p>
 Almost the same as above, at least on vectors. Based on
@@ -599,7 +621,7 @@ Almost the same as above, at least on vectors. Based on
 Dito
 </p>
 <div class="org-src-container">
-<pre class="src src-R">Filter(<span style="color: #a020f0;">function</span>(x) x &lt; 0, c(-5:5)); <span style="color: #b22222;"># </span><span style="color: #b22222;">vector of negative values</span>
+<pre class="src src-R">Filter(divisible_by(2), c(1:5)); <span style="color: #b22222;"># </span><span style="color: #b22222;">vector of even values</span>
 </pre>
 </div></dd>
 <dt>Folding</dt><dd><p>
@@ -614,17 +636,31 @@ This can actually flexibly be done with <code>Map</code>.
 </p>
 <div class="org-src-container">
 <pre class="src src-R">Map(<span style="color: #a020f0;">function</span>(x,y) x+y,c(1:5),c(1:5))
-<span style="color: #b22222;">#</span><span style="color: #b22222;">+END_SRC or simply</span>
-<span style="color: #b22222;">#</span><span style="color: #b22222;">+BEGIN_SRC R</span>
-Map(<span style="color: #000000; background-color: #ffffff;">`+`</span>,c(1:5),c(1:5))
 </pre>
-</div></dd>
-</dl></dd>
+</div>
+<p>
+or simply
+</p>
+<div class="org-src-container">
+<pre class="src src-R">Map(<span style="color: #000000; background-color: #ffffff;">`+`</span>,c(1:5),c(1:5))
+</pre>
+</div>
+<p>
+or even simpler
+</p>
+<div class="org-src-container">
+<pre class="src src-R">c(1:5) + c(1:5)
+</pre>
+</div>
+<p>
+since R is a data processing language.
+</p></dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org9dc27d1" class="outline-3">
-<h3 id="org9dc27d1"><span class="section-number-3">4.2</span> Additional Libraries (functional, purrr)</h3>
+</div>
+<div id="outline-container-orgf1993b0" class="outline-3">
+<h3 id="orgf1993b0"><span class="section-number-3">4.2</span> Additional Libraries (functional, purrr)</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Whilst everything is there, some things need some massaging. This is where
@@ -637,35 +673,39 @@ additional packages like <code>functional</code> or <code>purrr</code> come in. 
 </ul>
 </div>
 </div>
-<div id="outline-container-org4b87b64" class="outline-3">
-<h3 id="org4b87b64"><span class="section-number-3">4.3</span> External Bindings to Functional Programming Languages</h3>
+<div id="outline-container-org7d56de0" class="outline-3">
+<h3 id="org7d56de0"><span class="section-number-3">4.3</span> External Bindings to Functional Programming Languages</h3>
 <div class="outline-text-3" id="text-4-3">
-</div><div id="outline-container-org6c22926" class="outline-4">
-<h4 id="org6c22926"><span class="section-number-4">4.3.1</span> OCAML</h4>
+</div><div id="outline-container-orgb79e5a4" class="outline-4">
+<h4 id="orgb79e5a4"><span class="section-number-4">4.3.1</span> OCAML</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 <a href="https://github.com/pveber/ocaml-r">https://github.com/pveber/ocaml-r</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org5faa7e1" class="outline-4">
-<h4 id="org5faa7e1"><span class="section-number-4">4.3.2</span> F#</h4>
+<div id="outline-container-org1f6a084" class="outline-4">
+<h4 id="org1f6a084"><span class="section-number-4">4.3.2</span> F#</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 <a href="https://bluemountaincapital.github.io/FSharpRProvider/">https://bluemountaincapital.github.io/FSharpRProvider/</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgb9079e4" class="outline-4">
-<h4 id="orgb9079e4"><span class="section-number-4">4.3.3</span> HaskellR</h4>
+<div id="outline-container-org2d0fb1b" class="outline-4">
+<h4 id="org2d0fb1b"><span class="section-number-4">4.3.3</span> HaskellR</h4>
 <div class="outline-text-4" id="text-4-3-3">
+<p>
+<a href="https://tweag.github.io/HaskellR/">https://tweag.github.io/HaskellR/</a>    
+</p>
+
 <p>
 A topic for another day.
 </p>
 </div>
 </div>
-<div id="outline-container-org469a313" class="outline-4">
-<h4 id="org469a313"><span class="section-number-4">4.3.4</span> PureR?</h4>
+<div id="outline-container-orgd83797c" class="outline-4">
+<h4 id="orgd83797c"><span class="section-number-4">4.3.4</span> PureR?</h4>
 <div class="outline-text-4" id="text-4-3-4">
 <p>
 Purescript is a Haskell-style language originally created to generate 
@@ -684,8 +724,8 @@ solution, so if someone could be found with the necessary resources&#x2026;
 </div>
 </div>
 </div>
-<div id="outline-container-orgcf0174b" class="outline-2">
-<h2 id="orgcf0174b"><span class="section-number-2">5</span> Concerns</h2>
+<div id="outline-container-org5506cae" class="outline-2">
+<h2 id="org5506cae"><span class="section-number-2">5</span> Concerns</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Efficiency: tail-end recursion, lazy evaluation
@@ -699,7 +739,7 @@ Efficiency: tail-end recursion, lazy evaluation
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matthias Kanta</p>
-<p class="date">Created: 2019-11-06 Wed 19:33</p>
+<p class="date">Created: 2019-11-07 Thu 16:30</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
