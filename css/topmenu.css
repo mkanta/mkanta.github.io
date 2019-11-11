@@ -1,0 +1,41 @@
+:target {
+  padding-top: 100px;
+}
+
+nav {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow: auto;
+    background-color: DarkGreen;
+}
+
+nav ul {
+    list-style-type: none;
+    display: none;
+}
+
+nav > div > ul {
+   margin: 0;
+   padding: 0; /*for better centering*/
+   display: block;
+}
+
+nav > div > ul > li {
+   /*float: left;*/
+   display: inline-block;
+}
+/*But this needs adjustments to nav ul:*/
+nav ul {
+   overflow: auto;
+   width: 100%;
+   margin: 0 auto;
+}
+/*and perhaps to the background colour of nav*/
+
+section {
+   height: 1000px;
+}
