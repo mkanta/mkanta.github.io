@@ -1,0 +1,103 @@
+/* Style for html created from org-mode. Puts table of contents as a menu on
+   the left side. Perhaps suppress Table of Contents display */
+body {margin: 0;}
+header {
+    margin-left: 25%;
+    padding: 0;
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    top: 0px;
+    background-color: DeepSkyBlue;
+}
+h1.title { /*may want to center this*/
+    display: inline;
+}
+		  
+/* Put the table of contents as a panel on the left */
+nav {
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow: auto;
+    background-color: DarkGreen;
+}
+/* Turn off bullets for lists in navigation and make them invisible.
+   Top level lists are turned back on below.*/ 
+nav ul {
+    list-style-type: none;
+    display: none;
+}
+    
+/* This works but is not that useful because the display stops when
+   the hover is over. Probably need some script here that
+   sets the li to selected when clicked. Or perhaps tie it in with the
+   active class, ie selecting a headline should activate it 
+nav ul li a:hover + ul {
+    display: block;
+}*/
+/* Note: giving <a> a tabindex should make it work with :focus
+   Problem with focus: its the same as active on anchors, the onBlur
+   event occurs as soon as the mouse button is released. Try to give
+   the anchors tabindex=0 (as html attribute) and try the focus thing
+   and tabbing through the menu. It seems in chrome an anchor gets focus
+   only from tabbing. For clicking, some prevent default is necessary perhaps.
+   Calling elt.focus() on mousedown requires a preventDefault(), otherwise
+   the element will lose focus on mouseup*/
+/* Better use nav > ul.active > li > ul instead of this
+   This works with onclick="this.classList.toggle('active') in the anchor*/
+/* This one makes ul elements following an expanded anchor visible*/
+nav ul li a.expanded + ul {
+    display: block;
+}
+/* Top level contents, put them as far to the left as possible and make them
+   visible.*/
+nav >div> ul {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+/* The <h2> directly descending from the nav is the Table of Contents 
+   headline, hide it. */
+nav > h2 {
+    display: none;
+}
+
+nav ul li a {
+  display: block;
+  color: gold;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* This one makes ul elements following an active anchor visible*/
+/* Note this is not sufficient: if a subheader becomes active it will vanish
+   because the parent becomes inactive and vanishes. So <ul>s containing an
+   active anchor should be displayed, too.*/
+nav ul li a.active + ul {
+    display: block;
+}
+
+/* Make <ul> elements containing an active anchor visible, is this possible
+with css?  This certainly doesn't work, it selects <a>, not <ul>.
+nav ul li a.active {
+    display: block;
+}
+Probably need to make the ul active, too. */
+nav ul li a:hover:not(.active) {
+    background-color: ForestGreen;
+}
+
+nav ul li a.active {
+    background-color: green;
+}
+/* Putting content to the right of the navigation panel and 50 pixels down*/
+section {
+  margin-left: 26%;
+  padding-top: 50px;
+  height: 1000px;
+}
