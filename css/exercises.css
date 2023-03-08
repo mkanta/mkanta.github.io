@@ -1,0 +1,17 @@
+/* [[file:../tutoring/Common/exercises.org::*Exercises][Exercises:1]] */
+.hiddenHintList , .hiddenHint, .hiddenContent {
+  display:none;
+}
+/* list-style-type can be applied to <li> and their containers
+   because it is inherited. It only has an effect on elements
+   with display set to list-item, TODO maybe this class should be called
+   question-list rather than question in order to emphasise the intent*/
+.question {
+  list-style-type:none;
+  padding:0;
+  /*max-width:50%;*/
+}
+div[class^="outline-text"] {
+   max-width:50%;
+}
+/* Exercises:1 ends here */
