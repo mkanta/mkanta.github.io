@@ -1,0 +1,5 @@
+/* [[file:css.org::*Org-fold][Org-fold:1]] */
+div.folded > div {
+    display:none;
+}
+/* Org-fold:1 ends here */
