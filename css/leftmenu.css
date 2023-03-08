@@ -1,92 +1,84 @@
+/* [[file:css.org::*Header and Title][Header and Title:1]] */
 body {margin: 0;}
 header {
-    margin-left: 25%;
+    /*margin-left: 25%;*/
+    margin-left: 0px;
     padding: 0;
     width: 100%;
     height: 40px;
     position: fixed;
     top: 0px;
-    background-color: DeepSkyBlue;
+    left: 300px;
+    background-color: gold;
 }
+/* Header and Title:1 ends here */
 
-/* Put the table of contents as a panel on the left */
-nav {
-    margin: 0;
-    padding: 0;
-    width: 25%;
-    height: 100%;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    overflow: auto;
+/* [[file:css.org::*Header and Title][Header and Title:2]] */
+h1.title { /*may want to center this*/
+    display: inline;
+}
+/* Header and Title:2 ends here */
+
+/* [[file:css.org::*The Table of Contents][The Table of Contents:1]] */
+#table-of-contents{
+    position:fixed;
+    top:0;
+    left:0;
+    /*width:25%;*/
+    width:300px;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    height:100%;
+    /* background:#343131;*/
     background-color: DarkGreen;
+    z-index:200;
+    /*TODO: use some green shades instead*/
+    scrollbar-base-color: #1F1D1D;
+    scrollbar-arrow-color: #b3b3b3;
+    scrollbar-shadow-color: #1F1D1D;
+    scrollbar-track-color : #343131;
 }
-/* Turn off bullets for lists in navigation and make them invisible.
-   Top level lists are turned back on below.*/ 
-nav ul {
-    list-style-type: none;
-    display: none;
-}
+/* The Table of Contents:1 ends here */
 
-nav ul li a:hover + ul {
-    display: block;
+/* [[file:css.org::*The Table of Contents][The Table of Contents:3]] */
+#table-of-contents h2{
+    display:none;
 }
+/* The Table of Contents:3 ends here */
 
-/* This one makes ul elements following an expanded anchor visible*/
-nav ul li a.expanded + ul {
-    display: block;
+/* [[file:css.org::*The Table of Contents][The Table of Contents:4]] */
+#table-of-contents li{
+  list-style:none;
+  margin-left: 0px;
 }
-
-nav >div> ul {
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-
-/* The <h2> directly descending from the nav is the Table of Contents 
-   headline, hide it. */
-nav > h2 {
-    display: none;
-}
-
-nav ul li a {
+#table-of-contents a {
   display: block;
   color: gold;
   padding: 8px 16px;
   text-decoration: none;
 }
-
-nav ul li a.expandable:not(.expanded)::after {
-  content: "->"
+#table-of-contents a:hover:not(.on-display) {
+   background-color: ForestGreen;
 }
+/* The Table of Contents:4 ends here */
 
-nav > ul > li > ul ~ a:not(.expanded)::after {
-  content: "->"
+/* [[file:css.org::*The Table of Contents][The Table of Contents:6]] */
+div[id^="outline-container-org"]{
+    position:relative;
+    /*top:50px;*/
+    left:15px;
 }
-
-nav ul li a.expanded::after {
-  content: "<-"
+/*The placement of these depends on the header height and the menu width*/
+/*
+div.top-left{
+    position: fixed;
+    top: 50px;
+    left: 300 px;
+    display:block !important;
+}*/
+/*revert colours of anchor, only one should be active*/
+#table-of-contents a.on-display {
+ background-color: gold;
+ color: DarkGreen;
 }
-
-/* This one makes ul elements following an active anchor visible*/
-/* Note this is not sufficient: if a subheader becomes active it will vanish
-   because the parent becomes inactive and vanishes. So <ul>s containing an
-   active anchor should be displayed, too.*/
-nav ul li a.active + ul {
-    display: block;
-}
-
-nav ul li a:hover:not(.active) {
-    background-color: ForestGreen;
-}
-
-nav ul li a.active {
-    background-color: green;
-}
-
-/* Putting content to the right of the navigation panel and 50 pixels down*/
-section {
-  margin-left: 26%;
-  padding-top: 50px;
-  height: 1000px;
-}
+/* The Table of Contents:6 ends here */
