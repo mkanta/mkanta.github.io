@@ -4,12 +4,13 @@ header {
     /*margin-left: 25%;*/
     margin-left: 0px;
     padding: 0;
-    width: 100%;
+    width: 300px;
     height: 40px;
     position: fixed;
     top: 0px;
-    left: 300px;
-    background-color: gold;
+    left: 0px;
+    z-index:200;
+    background: gold;
 }
 /* Header and Title:1 ends here */
 
@@ -22,7 +23,7 @@ h1.title { /*may want to center this*/
 /* [[file:css.org::*The Table of Contents][The Table of Contents:1]] */
 #table-of-contents{
     position:fixed;
-    top:0;
+    top:40px;
     left:0;
     /*width:25%;*/
     width:300px;
