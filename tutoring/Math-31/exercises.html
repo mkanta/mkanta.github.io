@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-08 Wed 16:43 -->
+<!-- 2023-03-09 Thu 09:24 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calculus Exercises</title>
@@ -232,9 +232,6 @@ window.MathJax = {
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
 </head>
 <body>
-<div id="preamble" class="status">
-The Title Calculus Exercises
-</div>
 <div id="content" class="content">
 <header>
 <h1 class="title">Calculus Exercises</h1>
@@ -251,8 +248,7 @@ The Title Calculus Exercises
 <li><a href="#org80543dd">1.3.1. Exercises 1: Some Simple Integrals</a></li>
 <li><a href="#orgb6707dc">1.3.2. Exercises 2: Integrals of Sums</a></li>
 <li><a href="#orgedb37a2">1.3.3. Exercises 3: Integration Variables</a></li>
-<li><a href="#orgbe77e3d">1.3.4. Exercises 3: Changing Variables</a></li>
-<li><a href="#orgfc3c3ee">1.3.5. Exercises 4: Integrals of Products</a></li>
+<li><a href="#orgb442aae">1.3.4. Exercises 4: Changing Variables</a></li>
 </ul>
 </li>
 <li><a href="#orga01cbcb">1.4. Definite Integrals</a></li>
@@ -458,8 +454,8 @@ with respect to the integration variable \(x\). However
 </ol>
 </div>
 </div>
-<div id="outline-container-orgbe77e3d" class="outline-4">
-<h4 id="orgbe77e3d"><span class="section-number-4">1.3.4.</span> Exercises 3: Changing Variables</h4>
+<div id="outline-container-orgb442aae" class="outline-4">
+<h4 id="orgb442aae"><span class="section-number-4">1.3.4.</span> Exercises 4: Changing Variables</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <p>
 Changing integration variables often simplifies integration considerably.
@@ -473,7 +469,13 @@ With
 \[\frac{du}{dx}=3,\]
 the expression \(u^{10}=(3x+5)^{10}\) can be rewritten as
 \[u^{10}=\frac{1}{3}\frac{du}{dx}u^{10}\] and the integral can be rewritten as
-\[\int \frac{1}{3}u^{10}\frac{du}{dx}dx=\int\frac{1}{3}u^{10}du=\frac{1}{11}u^{11}+C=\frac{1}{11}(3x+5)^{11}+C.\]
+\[\int \frac{1}{3}u^{10}\frac{du}{dx}dx=\int\frac{1}{3}u^{10}du=\frac{1}{33}u^{11}+C=\frac{1}{11}(3x+5)^{11}+C.\]
+Note that, when using differential notation,
+\[\frac{du}{dx}=3\]
+can simply be solved for \(dx\) to yield
+\[dx=\frac{du}{3},\] which can then replace the \(dx\)
+in the integral
+\[\int u^{10}dx=\int u^{10}\frac{du}{3}=\frac{1}{3}\int u^{10}du.\]
 </p>
 <ol class="org-ol questionList">
 <li>Use a change of variables to integrate \(\int (x+1)^2dx\).</li>
@@ -489,10 +491,31 @@ Integrate with integrant multiplied out and compare results.</li>
 <li>Is it possible to integrate \(\int x(x^2+1)^2dx\) by a change of variables?
 Integrate with integrant multiplied out and compare results.</li>
 </ol>
+<p>
+From the exercises 9, 10 in the previous set it became clear that changing variables
+does not always work. The expression in the integral has to be, up to a constant, of
+the form \(u'(x)f(u(x))\), which was the case in exercise 10 but not in exercise 9.
+</p>
+
+<p>
+Exercises 1-8 indicated, that changing variables works well for integrals of the form
+\[\int f(ax+b)dx,\] that is when \(u(x)=ax+b\) is a linear function. This works because
+for these \(u\), \(du=adx\), hence \(dx=du/a\) and
+\[\int f(u(x))dx=\int f(u(x))\frac{du}{a}=\frac{1}{a}\int f(u)du.\]
+This is an exceptional situation, so here are some more advanced exercises.
+#+ATTR<sub>HTML</sub> :class questionList
+</p>
+<ol class="org-ol">
+<li value="11">Use a change of variables to integrate \(\int x(x^2+1)^2dx\).</li>
+<li>Do the previous integral by expanding the integrand and compare results.</li>
+<li>Use a change of variables to integrate \(\int 2x(3x^2+1)^5dx\).</li>
+<li>Use a change of variables to integrate \(\int x(5x^2+1)^3dx\).</li>
+<li>Use a change of variables to integrate \(\int (6x+3)(x^2+x+1)^{10}dx\).</li>
+<li>Use a change of variables to integrate \(\int (7x+1)(7x^2+2x+3)^9dx\).</li>
+<li>Use a change of variables to integrate \(\int \frac{7x+1}{(7x^2+2x+3)^2}dx\).</li>
+<li>Use a change of variables to integrate \(\int ((7x+1)\sqrt{7x^2+2x+3}dx\).</li>
+</ol>
 </div>
-</div>
-<div id="outline-container-orgfc3c3ee" class="outline-4">
-<h4 id="orgfc3c3ee"><span class="section-number-4">1.3.5.</span> Exercises 4: Integrals of Products</h4>
 </div>
 </div>
 
@@ -544,11 +567,6 @@ limit as \(n\rightarrow\infty\) this becomes</li>
 </div>
 </div>
 </div>
-</div>
-<div id="postamble" class="status">
-<p class="author">Author: mkanta</p>
-<p class="date">Created: 2023-03-08 Wed 16:43</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
