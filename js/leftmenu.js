@@ -61,7 +61,7 @@ function reverseMenuHandler(entries,observer){
                      anchor=> anchor.hash === ("#"+topHead.getAttribute("id")));
         activeToc.classList.remove("on-display");
         newToc.classList.add("on-display");
-    } else {//entries consist of elements that have left, at most one
+    } else {//entries consists of elements that have left, at most one
         if(entries[0].boundingClientRect.top > 0){
            //the entry has bottomed out, newToc should become the next one up
            const headParent=entries[0].target.parentElement;
@@ -69,8 +69,13 @@ function reverseMenuHandler(entries,observer){
               :headParent.parentElement.firstElementChild;
            const newToc=Array.from(toc.querySelectorAll("a")).find(
                      anchor=> anchor.hash === ("#"+prevHead.getAttribute("id")));
-           activeToc.classList.remove("on-display");
-           newToc.classList.add("on-display");
+           //note prevHead could be the table-of-contents headline, which has
+           //id="", so newToc could be undefined. This occurs when the top heading
+           //is obscured by the menu, no action needed in this case
+           if(newToc!==undefined){
+               activeToc.classList.remove("on-display");
+               newToc.classList.add("on-display");
+           }
         }
     }
 }
