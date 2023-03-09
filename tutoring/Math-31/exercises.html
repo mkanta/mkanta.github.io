@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-09 Thu 09:53 -->
+<!-- 2023-03-09 Thu 14:10 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calculus Exercises</title>
@@ -478,23 +478,135 @@ in the integral
 \[\int u^{10}dx=\int u^{10}\frac{du}{3}=\frac{1}{3}\int u^{10}du.\]
 </p>
 <ol class="org-ol questionList">
-<li>Use a change of variables to integrate \(\int (x+1)^2dx\).</li>
-<li>Integrate \(\int x^2+2x+1dx\) and compare to the previous result.</li>
-<li>Use a change of variables to integrate \(\int (3x+1)^5dx\).</li>
-<li>Use a change of variables to integrate \(\int (5x+1)^3dx\).</li>
-<li>Use a change of variables to integrate \(\int (1/3x+1)^{10}dx\).</li>
-<li>Use a change of variables to integrate \(\int (7x+1)^9dx\).</li>
-<li>Use a change of variables to integrate \(\int \frac{1}{(7x+3)^2}dx\).</li>
-<li>Use a change of variables to integrate \(\int (\sqrt{7x+3}dx\).</li>
+<li>Use a change of variables to integrate \(\int (x+1)^2dx\).
+<ol class="org-ol hiddenHintList">
+<li>Substitute \(u=x+1\),</li>
+<li>then \(du=dx\) and</li>
+<li>\[\int (x+1)^2dx=\int u^2dx=\int u^2du=\frac{1}{3}u^3+C,\]</li>
+<li>and \[\int (x+1)^2dx=\int u^2du=\frac{1}{3}u^3+C=\frac{1}{3}(x+1)^3+C.\]</li>
+</ol></li>
+<li>Integrate \(\int x^2+2x+1dx\) and compare to the previous result.
+<ol class="org-ol hiddenHintList">
+<li>\(\int x^2+2x+1dx=\frac{1}{3}x^3+x^2+x+C\).</li>
+<li>For comparison with the result from the last exercise, factor out
+\(1/3\) to get</li>
+<li>\(\int x^2+2x+1dx=\frac{1}{3}(x^3+3x^2+3x)+C\).</li>
+<li>This still looks different. However, it is possible to
+complete \(x^3+3x^2+3x\) to a cube by adding and subtracting \(1\),
+which results in</li>
+<li>\[x^3+3x^2+3x=x^3+3x^2+3x+1-1=(x+1)^3-1,\]which, when plugged back
+into the integration result yields</li>
+<li>\[\int x^2+2x+1dx=\frac{1}{3}(x^3+3x^2+3x)+C=\frac{1}{3}(x^3+3x^2+3x+1-1)+C
+      =\frac{1}{3}(x+1)^3-\frac{1}{3}+C.\]</li>
+<li>This is different from the result in exercise 1. However the difference is the
+constant \(-1/3\), which can be absorbed into the general constant \(C\). This
+illustrates the fact that antiderivatives differing by a constant represent
+the same result.</li>
+</ol></li>
+<li>Use a change of variables to integrate \(\int (3x+1)^5dx\).
+<ol class="org-ol hiddenHintList">
+<li>With the substitution \(u=3x+1\),</li>
+<li>\(du/dx=3\) or \(du=3dx\).</li>
+<li>Solve for \(dx\),</li>
+<li>to get \[dx=\frac{du}{3}.\]</li>
+<li>Put the new values back into the integral to get
+\[\int (3x+1)^5dx=\int u^5dx=\int u^5\frac{du}{3}=\frac{1}{3}\int u^5du\]</li>
+<li>and integrate
+\[\frac{1}{3}\int u^5du=\frac{1}{3}\frac{1}{6}u^6+C=\frac{1}{18}(3x+1)^6+C.\]</li>
+</ol></li>
+
+<li>Use a change of variables to integrate \(\int (5x+1)^3dx\).
+<ol class="org-ol hiddenHintList">
+<li>With the substitution \(u=5x+1\),</li>
+<li>\(du/dx=5\) or \(du=5dx\).</li>
+<li>Solve for \(dx\),</li>
+<li>to get \[dx=\frac{du}{5}.\]</li>
+<li>Put the new values back into the integral to get
+\[\int (5x+1)^3dx=\int u^3dx=\int u^3\frac{du}{5}=\frac{1}{5}\int u^3du\]</li>
+<li>and integrate
+\[\frac{1}{5}\int u^3du=\frac{1}{5}\frac{1}{4}u^4+C=\frac{1}{20}(5x+1)^4+C.\]</li>
+</ol></li>
+<li>Use a change of variables to integrate \(\int (1/3x+1)^{10}dx\).
+<ol class="org-ol hiddenHintList">
+<li>With the substitution \(u=1/3x+1\),</li>
+<li>\(du/dx=1/3\) or \(du=1/3dx\).</li>
+<li>Solve for \(dx\),</li>
+<li>to get \[dx=3du.\]</li>
+<li>Put the new values back into the integral to get
+\[\int (1/3x+1)^{10}dx=\int u^{10}dx=\int u^{10}3du=3\int u^{10}du\]</li>
+<li>and integrate
+\[3\int u^{10}du=3\frac{1}{11}u^{11}+C=\frac{3}{11}(1/3x+1)^{11}+C.\]</li>
+</ol></li>
+<li>Use a change of variables to integrate \(\int (7x+1)^9dx\).
+<ol class="org-ol hiddenHintList">
+<li>With the substitution \(u=7x+1\),</li>
+<li>\(du/dx=7\) or \(du=7dx\).</li>
+<li>Solve for \(dx\),</li>
+<li>to get \[dx=du/7.\]</li>
+<li>Put the new values back into the integral to get
+\[\int (7x+1)^9dx=\int u^9dx=\int u^9du/7=\frac{1}{7}\int u^9du\]</li>
+<li>and integrate
+\[\frac{1}{7}\int u^9du=\frac{1}{7}\frac{1}{10}u^{10}+C=\frac{1}{70}(7x+1)^{10}+C.\]</li>
+</ol></li>
+<li>Use a change of variables to integrate \(\int \frac{1}{(7x+3)^2}dx\).
+<ol class="org-ol hiddenHintList">
+<li>With the substitution \(u=7x+3\),</li>
+<li>\(du/dx=7\) or \(du=7dx\).</li>
+<li>Solve for \(dx\),</li>
+<li>to get \[dx=du/7.\]</li>
+<li>Put the new values back into the integral to get
+\[\int \frac{1}{(7x+1)^2}dx=\int \frac{1}{u^2}dx=\int \frac{1}{u^2}du/7=\frac{1}{7}\int u^{-2}du\]</li>
+<li>and integrate
+\[\frac{1}{7}\int u^{-2}du=\frac{1}{7}(-1)u^{-1}+C=\frac{1}{7}(7x+3)^{-1}+C.\]</li>
+</ol></li>
+<li>Use a change of variables to integrate \(\int \sqrt{7x+3}dx\).
+<ol class="org-ol hiddenHintList">
+<li>With the substitution \(u=7x+3\),</li>
+<li>\(du/dx=7\) or \(du=7dx\).</li>
+<li>Solve for \(dx\),</li>
+<li>to get \[dx=du/7.\]</li>
+<li>Put the new values back into the integral to get
+\[\int \sqrt{(7x+1)}dx=\int \sqrt{u}dx=\int \sqrt{u}du/7=\frac{1}{7}\int u^{\frac{1}{2}}du\]</li>
+<li>and integrate
+\[\frac{1}{7}\int u^{\frac{1}{2}}du=\frac{1}{7}\frac{2}{3}u^{\frac{3}{2}}+C=\frac{2}{21}\sqrt{(7x+3)}^{3}+C.\]</li>
+</ol></li>
 <li>Is it possible to integrate \(\int (x^2+1)^2dx\) by a change of variables?
-Integrate with integrant multiplied out and compare results.</li>
+Integrate with integrand multiplied out and compare results.
+<ol class="org-ol hiddenHintList">
+<li>The obvious substitution \(u=x^2+1\) leads to</li>
+<li>\(du/dx=2x\) or \(du=2xdx\) and</li>
+<li>\(dx=du/2x\).</li>
+<li>Putting this back into the integral then leads to
+\[\int (x^2+1)^2dx=\int u^2dx=\int u^2\frac{du}{2x},\]</li>
+<li>hence to a failure of eliminating the variable \(x\) from the integral.</li>
+<li>There is no obvious way to integrate by a change of variable, but integrating
+\[\int x^4+2x^2+1 dx=\frac{1}{5}x^5+\frac{2}{3}x^3+x+C\] certainly works.</li>
+</ol></li>
 <li>Is it possible to integrate \(\int x(x^2+1)^2dx\) by a change of variables?
-Integrate with integrant multiplied out and compare results.</li>
+Integrate with integrant multiplied out and compare results.
+<ol class="org-ol hiddenHintList">
+<li>The obvious substitution \(u=x^2+1\) leads to</li>
+<li>\(du/dx=2x\) or \(du=2xdx\) and</li>
+<li>\(dx=du/2x\).</li>
+<li>Putting this back into the integral then leads to
+\[\int x(x^2+1)^2dx=\int xu^2dx=\int xu^2\frac{du}{2x}=\frac{1}{2}\int u^2du,\]</li>
+<li>where now all occurences of \(x\) are eliminated. This can be integrated to yield</li>
+<li>\[\frac{1}{2}\int u^2du=\frac{1}{2}\frac{1}{3}u^3+C=\frac{1}{6}(x^2+1)^3+C.\]</li>
+<li>Expanding the integrand leads to
+\[\int x^5+2x^3+xdx=\frac{1}{6}x^6+\frac{1}{2}x^4+\frac{1}{2}x^2+C.\]</li>
+<li>For comparison with the result obtained by changing the variable, factor out
+\(1/6\) and complete the cube to get
+\[\frac{1}{6}(x^6+3x^4+3x^2+1)-\frac{1}{6}+C=\frac{1}{6}(x^2+1)^3-\frac{1}{6}+C.\]</li>
+<li>Thus, the results from the two different approaches differ by the additive constant \(-1/6\),
+again emphasising the fact that antiderivatives of the same function can differ
+by additive constants.</li>
+</ol></li>
 </ol>
 <p>
 From the exercises 9, 10 in the previous set it became clear that changing variables
-does not always work. The expression in the integral has to be, up to a constant, of
-the form \(u'(x)f(u(x))\), which was the case in exercise 10 but not in exercise 9.
+does not always work. The expression in the integral has to be of
+the form \(cu'(x)f(u(x))\) where \(c\) is a constant. This was the case in exercise 10 but
+not in exercise 9.
 </p>
 
 <p>
