@@ -1,5 +1,8 @@
 /* [[file:css.org::*Header and Title][Header and Title:1]] */
-body {margin: 0;}
+body {margin: 0px;}
+/*#content{
+    display:flex;
+}*/
 header {
     /*margin-left: 25%;*/
     margin-left: 0px;
@@ -27,6 +30,7 @@ h1.title { /*may want to center this*/
     left:0;
     /*width:25%;*/
     width:300px;
+    /*flex-basis:300px;*/
     overflow-x:hidden;
     overflow-y:scroll;
     height:100%;
@@ -64,22 +68,22 @@ h1.title { /*may want to center this*/
 /* The Table of Contents:4 ends here */
 
 /* [[file:css.org::*The Table of Contents][The Table of Contents:6]] */
-div[id^="outline-container-org"]{
-    position:relative;
-    /*top:50px;*/
-    left:15px;
-}
-/*The placement of these depends on the header height and the menu width*/
-/*
-div.top-left{
-    position: fixed;
-    top: 50px;
-    left: 300 px;
-    display:block !important;
-}*/
-/*revert colours of anchor, only one should be active*/
-#table-of-contents a.on-display {
- background-color: gold;
- color: DarkGreen;
-}
+#content > div[id^="outline-container-org"]{
+     position:absolute;
+     left:300px;
+     padding-left: 10px;
+ }
+ /*The placement of these depends on the header height and the menu width*/
+ /* no good
+ div.top-left{
+     position: fixed;
+     top: 50px;
+     left: 300 px;
+     display:block !important;
+ }*/
+ /*revert colours of anchor, only one should be active*/
+ #table-of-contents a.on-display {
+  background-color: gold;
+  color: DarkGreen;
+ }
 /* The Table of Contents:6 ends here */
