@@ -70,7 +70,7 @@ h1.title { /*may want to center this*/
 /* [[file:css.org::*The Table of Contents][The Table of Contents:6]] */
 #content > div[id^="outline-container-org"]{
      position:absolute;
-     left:300px;
+     left:300px;/*Line up with left end of #table-of-content*/
      padding-left: 10px;
  }
  /*The placement of these depends on the header height and the menu width*/
@@ -87,3 +87,24 @@ h1.title { /*may want to center this*/
   color: DarkGreen;
  }
 /* The Table of Contents:6 ends here */
+
+/* [[file:css.org::*Headings][Headings:1]] */
+h2 {
+    color: blue;
+    }
+h3 {
+    color: sienna;
+    }
+h4 {
+    color: purple;
+    }
+h5 {
+    color: firebrick;
+    }
+h6 {
+    color: forestgreen;
+    }
+/*h6 {
+    color: darkcyan;
+    }*/
+/* Headings:1 ends here */
