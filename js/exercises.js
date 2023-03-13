@@ -6,6 +6,25 @@ Array.from(document.querySelectorAll(".questionList"),
 
 // [[file:../tutoring/Common/exercises.org::*Exercises][Exercises:6]]
 function hintListener(evt){
+    //check if there is a request from answer-request
+    if(evt.target.matches("span.answer-request")){
+        const ansDiv=evt.currentTarget.querySelector("div.answer");
+        if(ansDiv!==null) {
+            ansDiv.classList.toggle("hiddenContent");
+         }
+        return false;
+    }
+    //check if there is a request from more-request
+    if(evt.target.matches("span.more-request")){
+        //where to get the function? from the dataset
+        //add a list element to currentTarget
+        const newLi=document.createElement("li");
+        newLi.innerHTML=getMoreFunction(evt.target.dataset.call)();
+        evt.currentTarget.appendChild(newLi);
+        //run mathjax on this
+        MathJax.typesetPromise([evt.currentTarget]);
+        return false;
+    }
     //look for the <li> where the event came from
     const target = Array.from(evt.currentTarget.children).find( c => c.contains(event.target));
     //get the hint list, first try if there is a hidden one
