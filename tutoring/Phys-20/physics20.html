@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-03-13 Mon 14:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="mkanta" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+The Title 
+</div>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf8ca493">1. Mathematical Vector Notation in 2D</a>
+<ul>
+<li><a href="#org7c27926">1.1. Polar Vectors</a></li>
+<li><a href="#org4543ecf">1.2. Cartesian Vectors</a>
+<ul>
+<li><a href="#org9dc9aaf">1.2.1. Cartesian Vector Algebra</a></li>
+<li><a href="#org6713631">1.2.2. The Length of a Cartesian Vector</a></li>
+<li><a href="#orgc123129">1.2.3. The Direction of a Cartesian Vector</a></li>
+<li><a href="#org0830f13">1.2.4. Unit Vectors and Special Directions</a></li>
+</ul>
+</li>
+<li><a href="#org155baca">1.3. Conversion between Vector Representations</a></li>
+<li><a href="#orgd1f293f">1.4. Exercises</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf8ca493" class="outline-2">
+<h2 id="orgf8ca493"><span class="section-number-2">1.</span> Mathematical Vector Notation in 2D</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In two dimensions, vectors are arrows in the plane. The most common ways to
+describe vectors are polar representation and cartesian representation.
+</p>
+</div>
+<div id="outline-container-org7c27926" class="outline-3">
+<h3 id="org7c27926"><span class="section-number-3">1.1.</span> Polar Vectors</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Here, a reference direction is chosen as an arrow in the
+plane, often considered to point due east and interpreted as the \(x\)-axis
+of a coordinate system. Vectors are given as a length and an angle and
+considered arrows with that length and forming the final leg of the angle
+with the \(x\)-axis.
+</p>
+
+<p>
+In that notation, a displacement might be given as
+\(10\text{m}\)\([25^\circ]\) indicating that an object
+was moved a distance of \(10\text{m}\) at an angle of \(25^\circ\) with
+respect to the reference direction.
+</p>
+
+<p>
+While this is inuitive, it is difficult to describe the result of combined
+movements. That is where the cartesian representation comes in.
+</p>
+</div>
+</div>
+<div id="outline-container-org4543ecf" class="outline-3">
+<h3 id="org4543ecf"><span class="section-number-3">1.2.</span> Cartesian Vectors</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+These are tuples \((x,y)\) in a cartesian coordinate system and interpreted
+as arrows pointing from the origin \((0,0)\) of the coordinate system to
+the point \((x,y)\).
+</p>
+
+<p>
+In this representation, a displacement might be given as
+\((10\text{m},25\text{m})\) indicating that that an object was moved
+\(10\text{m}\) to the right on the \(x\)-axis and then \(25\text{m}\)
+up parallel to the \(y\)-axis. Here, there is an emphasis on consecutive
+movements, if the object is moved again by \((15\text{m},-2\text{m})\),
+that is another \(15\text{m}\) to the right parallel to the \(x\)-axis
+and \(2\text{m}\) down parallel to the \(y\)-axis, then it is easy to see
+that the result of the combined movement is
+\[(10\text{m},25\text{m})+(15\text{m},-2\text{m})=(10\text{m}+15\text{m},25\text{m}-2\text{m})=(25\text{m},23\text{m}).\]
+This is tantamount to a displacement of \(25\text{m}\) to the right and \(23\text{m}\)
+up.
+</p>
+</div>
+<div id="outline-container-org9dc9aaf" class="outline-4">
+<h4 id="org9dc9aaf"><span class="section-number-4">1.2.1.</span> Cartesian Vector Algebra</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<dl class="org-dl">
+<dt>Addition</dt><dd>Cartesian vectors \(\pmb{v}=(v_1,v_2)\) and \(\pmb{u}=(u_1,u_2)\)
+can be added and subtracted component-wise according to
+\[(v_1,v_2)\pm(u_1,u_2)=(v_1\pm u_1,v_2\pm u_2).\]</dd>
+<dt>Scalar Multiplication</dt><dd>A cartesian vector \(\pmb{v}=(v_1,v_2)\) can be
+multiplied by a scalar component-wise according to
+\[s(v_1,v_2)=(sv_1,sv_2).\]
+This has the effect of changing the length of the vector and, in the case of
+negative \(s\) changing its direction to the opposite.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org6713631" class="outline-4">
+<h4 id="org6713631"><span class="section-number-4">1.2.2.</span> The Length of a Cartesian Vector</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+Since a vector \(\pmb{v}=(v_1,v_2)\) is made up of two components \(v_1,\,v_2\)
+at right angles, its length is
+\[\|\pmb{v}\|=\sqrt{v_1^2+v_2^2}.\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgc123129" class="outline-4">
+<h4 id="orgc123129"><span class="section-number-4">1.2.3.</span> The Direction of a Cartesian Vector</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+A vector \(\pmb{v}=(v_1,v_2)\) is the final leg in an angle \(\alpha\) which
+has opposite \(v_2\) and adjacent \(v_1\), consequently
+\[\alpha=\tan^{-1}\frac{v_2}{v_1}.\] However, when using calculator results,
+only the angles for vectors pointing into Quadrant I are correct. For vectors
+pointing into Quadrants II and III, \(180^\circ\) has to be added to the
+calculator result and for vectors pointing into Quadrant IV, \(360^\circ\)
+has to be added.
+</p>
+</div>
+</div>
+<div id="outline-container-org0830f13" class="outline-4">
+<h4 id="org0830f13"><span class="section-number-4">1.2.4.</span> Unit Vectors and Special Directions</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+Unit vectors are vectors with length \(1\). There are a few special unit vectors
+that are noteworthy.
+</p>
+<dl class="org-dl">
+<dt>Right</dt><dd>This is \((1,0)\), the unit vector pointing to the right along
+the \(x\)-axis.</dd>
+<dt>Up</dt><dd>This is \((0,1)\), the unit vector pointing up along the \(y\)-axis.</dd>
+<dt>Left</dt><dd>This is the opposite \((-1,0)\) to the vector pointing right, note
+that \((-1,0)=(-1)(1,0)\).</dd>
+<dt>Down</dt><dd>The opposite \((0,-1)\) to the vector \((0,1)\) pointing up. Again,
+they are related by \((-1,0)=(-1)(0,1)\).</dd>
+</dl>
+<p>
+In general, unit vectors are of the form
+\[\pmb{u}_\alpha=(\cos\alpha,\sin\alpha),\]
+due to the trigonometry identity \(\cos^2\alpha+\sin^2\alpha=\). Such a
+vector \(\pmb{u}_\alpha\) is called the <i>unit vector in direction</i> \(\alpha\). 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org155baca" class="outline-3">
+<h3 id="org155baca"><span class="section-number-3">1.3.</span> Conversion between Vector Representations</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+The conversion from vectors in polar representation to cartesian representation
+is easy when the polar reference direction is the positive \(x\)-axis:
+\[r[\alpha]\rightarrow r(\cos\alpha,\sin\alpha)=(r\cos\alpha,r\sin\alpha),\]
+which will mostly be the case. Thus a displacement \(10\text{m}[25^\circ]\)
+by distance \(10\text{m}\) in direction \(\alpha\) has cartesian representation
+\[(10\text{m}\cos 25^\circ,10\text{m}\sin 25^\circ)=(9.1\text{m},4.2\text{m}).\]
+For the conversion from cartesian representation \(\pmb{v}=(v_1,v_2)\) to polar
+representation \(r[\alpha]\) simply calculate \[r=\|\pmb{v}\|,\,\alpha=\tan^{-1}\frac{v_2}{v_1},\]
+with the necessary correction for \(\alpha\) as indicated above.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd1f293f" class="outline-3">
+<h3 id="orgd1f293f"><span class="section-number-3">1.4.</span> Exercises</h3>
+<div class="outline-text-3" id="text-1-4">
+<dl class="org-dl">
+<dt>Conversions 1</dt><dd>Convert the given displacements to cartesian representation.
+<ol class="org-ol">
+<li>A ship sails \(300\text{km}\) at \(210^\circ\).</li>
+<li>A piece of furniture is moved \(5m\) at \(45^\circ\).</li>
+<li>A car moves  \(5km\) at \(300^\circ\).</li>
+<li>A piece of furniture is moved \(3m\) at \(125^\circ\).</li>
+<li>A ship sails \(500\text{km}\) at \(110^\circ\).</li>
+<li>A piece of furniture is moved \(7m\) at \(200^\circ\).</li>
+<li>A car moves  \(50km\) at \(30^\circ\).</li>
+<li>A piece of furniture is moved \(2m\) at \(12.5^\circ\).</li>
+</ol></dd>
+<dt>Conversions 2</dt><dd>Convert the given displacements to polar representation.
+<ol class="org-ol">
+<li>\(30.3,22.1\).</li>
+<li>\(30.3,-22.1\).</li>
+<li>\(-30.3,-22.1\).</li>
+<li>\(-30.3,22.1\).</li>
+<li>\(200,150\).</li>
+<li>\(-150,-215\).</li>
+<li>\(-215,150\).</li>
+<li>\(150,-215\).</li>
+</ol></dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mkanta</p>
+<p class="date">Created: 2023-03-13 Mon 14:24</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
