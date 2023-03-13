@@ -11,6 +11,10 @@
   padding:0;
   /*max-width:50%;*/
 }
+span.answer-request, span.hint-request, span.more-request {
+    background-color: gold;
+    color: DarkGreen;
+}
 div[class^="outline-text"] {
    max-width:50%;
 }
