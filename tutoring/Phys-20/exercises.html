@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-13 Mon 14:24 -->
+<!-- 2023-03-15 Wed 16:29 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Physics Exercises</title>
@@ -244,7 +244,13 @@ window.MathJax = {
 <ul>
 <li><a href="#org84e5eb1">1. Kinematics</a>
 <ul>
-<li><a href="#org816997c">1.1. Projectiles</a></li>
+<li><a href="#org7468840">1.1. Falling Objects</a>
+<ul>
+<li><a href="#org915f6ba">1.1.1. Initial Velocity</a></li>
+<li><a href="#org2b98cfc">1.1.2. Path of a Falling Object</a></li>
+</ul>
+</li>
+<li><a href="#org816997c">1.2. Projectiles</a></li>
 </ul>
 </li>
 </ul>
@@ -255,9 +261,92 @@ window.MathJax = {
 <h2 id="org84e5eb1"><span class="section-number-2">1.</span> Kinematics</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org816997c" class="outline-3">
-<h3 id="org816997c"><span class="section-number-3">1.1.</span> Projectiles</h3>
+<div id="outline-container-org7468840" class="outline-3">
+<h3 id="org7468840"><span class="section-number-3">1.1.</span> Falling Objects</h3>
 <div class="outline-text-3" id="text-1-1">
+<p>
+Its further trajectory is given by
+\[\vec{d}(t)=\vec{v}_it+\frac{1}{2}\vec{a}t^2\]
+with acceleration \(\vec{a}=(0,-9.81)\) due to gravity.
+</p>
+
+<p>
+Given the time \(t_0\) of its impact, the range of the object can then be read off from
+the first component of \(\vec{d}(t_0)\), its launch height from the second component of
+\(\vec{d}(t_0)\).
+</p>
+</div>
+<div id="outline-container-org915f6ba" class="outline-4">
+<h4 id="org915f6ba"><span class="section-number-4">1.1.1.</span> Initial Velocity</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+An object launched with speed \(s\) at an horizontal angle \(\alpha\) has initial velocity
+\[\vec{v}_i=(s\cos\alpha,s\sin\alpha).\]
+</p>
+<ol class="org-ol questionList">
+<li><p>
+An object is launched at speed \(10.0\)m/s at an angle of
+\(-35.0^\circ\) with respect to the horizontal. Determine its
+initial velocity, its initial horizontal velocity and its
+initial vertical velocity.
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="initvelocity">more</span> questions of this type.
+<div class="answer hiddenContent div" id="orga8c7e5e">
+<p>
+Initial velocity: \((8.19,-5.74)\) m/s, Horizontal:\(8.19\) m/s, Vertical: \(-5.74\) m/s
+</p>
+
+</div>
+<ol class="org-ol hiddenHintList">
+<li>Angles with respect to the horizontal are cartesian angles,</li>
+<li>the speed is the magnitude of the velocity,</li>
+<li>therefore the initial velocity is
+\[\vec{v}=(10\cos(-35),10\sin(-35))=(8.19, -5.74)\frac{\text{m}}{\text{s}}.\]</li>
+<li>Its first component \(8.19\) m/s is the initial horizontal velocity.</li>
+<li>Its second component \(-5.74\) m/s is the initial vertical velocity.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org2b98cfc" class="outline-4">
+<h4 id="org2b98cfc"><span class="section-number-4">1.1.2.</span> Path of a Falling Object</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ol class="org-ol questionList">
+<li><p>
+An object is launched at \(2.15\) m/s at \(-35.0^\circ\) to the horizontal. It hits the
+ground after \(0.500\) s. Determine its range and the height from which it was launched.
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="fallpath">more</span> questions of this type.
+<div class="answer hiddenContent div" id="org63ef607">
+<p>
+Range: \(0.881\) m, Height at Launch:\(1.84\) m
+</p>
+
+</div>
+
+<ol class="org-ol hiddenHintList">
+<li>The initial velocity is given by
+\[\vec{v}_i=(2.15\cos(-35.0),2.15\sin(-35.0)),\]</li>
+<li>which results in a trajectory of
+\[(d_x,d_y)=(2.15\cos(-35.0),2.15\sin(-35.0))t+\frac{1}{2}(0,-9.81)t^2.\]</li>
+<li>At time \(t=0.500\) s, this becomes
+\[(d_x,d_y)=(2.15\cos(-35.0),2.15\sin(-35.0))0.500+\frac{1}{2}(0,-9.81)0.500^2,\]</li>
+<li>or
+\[(d_x,d_y)=(0.881, -1.84).\]</li>
+<li>This means its range is \(d_x=0.881\) m and</li>
+<li>\(d_y=-1.84\) indicates that it went \(1.84\) m down before
+impact, hence</li>
+<li>it was launched from a height of \(1.84\) m.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org816997c" class="outline-3">
+<h3 id="org816997c"><span class="section-number-3">1.2.</span> Projectiles</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 Projectile motion is described by the equation
 \[\vec{d}(t)=\vec{v}_it+\frac{1}{2}\vec{a}t^2\]
@@ -284,7 +373,7 @@ horizontal. Determine its range and maximum height.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="projectiles">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orgb2bde89">
+<div class="answer hiddenContent div" id="orgbc655cf">
 <p>
 Range:\(19.9\)m, Height:\(2.87\)m
 </p>
