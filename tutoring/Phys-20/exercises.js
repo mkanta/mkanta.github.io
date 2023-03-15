@@ -1,34 +1,156 @@
-//functions to generate exercises
-// Procedure: add a span to the question with class more-request and a data attribute
-//data-call whose value is a function name
-//The function registry
+// [[file:generated.org::*General Procedure][General Procedure:1]]
+//Code for generating physics exercises.
+// General Procedure:1 ends here
+
+// [[file:generated.org::*General Procedure][General Procedure:2]]
 function getMoreFunction(fstring){
     switch(fstring){
     case "projectiles":return projectiles;
-    default: return (()=> "No function "+fstring+" known to match")
+    case "initvelocity":return initvelocity;
+    case "fallpath":return fallpath;
+    default: return (()=> "No function "+fstring+" known to match");
     }
 }
-//exercises with projectiles. TODO: adjust to new setup, add spans for answer, hints and
-//more request as well as a hidden answer div, the text of the question seems now wrapped
-//in a paragraph
+// General Procedure:2 ends here
+
+// [[file:generated.org::*Falling Objects][Falling Objects:1]]
+function initvelocity(){
+          const speed= (() => {const rv=Math.random()*1000+1;//1 to 1000 m/s
+                              if(rv<10){//want 3 significant digits
+                                  return Math.round(rv*100)/100;
+                              } else if(rv<100){//want 3 significant digits
+                                  return Math.round(rv*10)/10;
+                              } else {
+                                  return Math.round(rv);
+                              }})();
+          const speedString = toLatexPrecision(speed,3);
+          //and angles between -60 and 60 degrees
+          const angle= Math.floor(Math.random()*121)-60;
+          const angleString=toLatexPrecision(angle,3);
+          //note javascript is in rad mode
+          const angleRad=angle*Math.PI/180;
+          const horizontalString=toLatexPrecision(speed*Math.cos(angleRad),3)
+          const verticalString=toLatexPrecision(speed*Math.sin(angleRad),3)
+          return `<p>
+  An object is launched at speed \\(${speedString}\\)m/s at an angle of
+  \\(${angleString}^\\circ\\) with respect to the horizontal. Determine its
+  initial velocity, its initial horizontal velocity and its
+  initial vertical velocity.
+  </p>
+
+  Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+  <span class="more-request" data-call="initvelocity">more</span> questions of this type.
+  <div class="answer hiddenContent div" id="orgf48819f">
+  <p>
+  Initial velocity: \\((${horizontalString},${verticalString})\\) m/s, Horizontal:\\(${horizontalString}\\) m/s, Vertical: \\(${verticalString}\\) m/s
+  </p>
+
+  </div>
+  <ol class="org-ol hiddenHintList">
+  <li>Angles with respect to the horizontal are cartesian angles,</li>
+  <li>the speed is the magnitude of the velocity,</li>
+  <li>therefore the initial velocity is
+  \\[\\vec{v}=(${speedString}\\cos(${angleString}),${speedString}\\sin(${angleString}))=(${horizontalString}, ${verticalString})\\frac{\\text{m}}{\\text{s}}.\\]</li>
+  <li>Its first component \\(${horizontalString}\\) m/s is the initial horizontal velocity.</li>
+  <li>Its second component \\(${verticalString}\\) m/s is the initial vertical velocity.</li>
+  </ol>` ;
+      }
+  function fallpath(){
+        const speed= (() => {const rv=Math.random()*1000+1;//1 to 1000 m/s
+                            if(rv<10){//want 3 significant digits
+                                return Math.round(rv*100)/100;
+                            } else if(rv<100){//want 3 significant digits
+                                return Math.round(rv*10)/10;
+                            } else {
+                                return Math.round(rv);
+                            }})();
+        const speedString = toLatexPrecision(speed,3);
+        //originally from 0.1 to 1000 seconds, which was too much
+        const time= (() => {const rv=Math.random()*11+0.01;//0.01 to 10.01 s
+                            if(rv<1){//want 3 significant digits
+                                return Math.round(rv*1000)/1000;
+                            } else if(rv<10){//want 3 significant digits
+                                return Math.round(rv*100)/100;
+                            } else if(rv<100){//want 3 significant digits
+                                return Math.round(rv*10)/10;
+                            } else {
+                                return Math.round(rv);
+                            }})();
+        const timeString = toLatexPrecision(time,3);
+        //and angles between -60 and 60 degrees
+        const angle= Math.floor(Math.random()*121)-60;
+        const angleString=toLatexPrecision(angle,3);
+        //note javascript is in rad mode
+        const angleRad=angle*Math.PI/180;
+        const range=speed*Math.cos(angleRad)*time;
+        const rangeString=toLatexPrecision(range,3);
+        const height=speed*Math.sin(angleRad)*time-4.905*time*time;
+        const heightString=toLatexPrecision(height,3);
+        const absHeightString=toLatexPrecision(Math.abs(height),3);
+        const abovebelow=height => height<0?"above":"below";
+        const downup=height => height<0?"down":"up";
+//TODO: wording: if height string is negative
+        return `<p>
+An object is launched at \\(${speedString}\\) m/s at \\(${angleString}^\\circ\\) to the horizontal. It hits the
+ground after \\(${timeString}\\) s. Determine its range and the height from which it was launched.
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="fallpath">more</span> questions of this type.
+<div class="answer hiddenContent div" id="orgb6d74a1">
+<p>
+Range: \\(${rangeString}\\) m, Height: \\(${absHeightString}\\) m
+</p>
+
+</div>
+
+<ol class="org-ol hiddenHintList">
+<li>The initial velocity is given by
+\\[\\vec{v}_i=(${speedString}\\cos(${angleString}),${speedString}\\sin(${angleString})),\\]</li>
+<li>which results in a trajectory of
+\\[(d_x,d_y)=(${speedString}\\cos(${angleString}),${speedString}\\sin(${angleString}))t+\\frac{1}{2}(0,-9.81)t^2.\\]</li>
+<li>At time \\(t=${timeString}\\) s, this becomes
+\\[(d_x,d_y)=(${speedString}\\cos(${angleString}),${speedString}\\sin(${angleString}))${timeString}+\\frac{1}{2}(0,-9.81)${timeString}^2,\\]</li>
+<li>or
+\\[(d_x,d_y)=(${rangeString}, ${heightString}).\\]</li>
+<li>This means its range is \\(d_x=${rangeString}\\) m and</li>
+<li>\\(d_y=${heightString}\\) indicates that it went \\(${absHeightString}\\) m
+${downup(height)} before impact, hence</li>
+<li>it was launched from \\(${absHeightString}\\) m ${abovebelow(height)}
+     the impact point.</li>
+</ol>`;
+
+  }
+// Falling Objects:1 ends here
+
+// [[file:generated.org::*Projectiles][Projectiles:1]]
 function projectiles(){
+    //using speeds between 10 and 500 m/s
     const speed= (() => {const rv=Math.random()*491+10;//10 to 500 m/s
                         if(rv<100){//want 3 significant digits
                             return Math.round(rv*10)/10;
                         } else {
                             return Math.round(rv);
                         }})();
-    const speedString = speed.toPrecision(3);
+    const speedString = toLatexPrecision(speed,3);
+    //and angles between 0 and 60 degrees
     const angle= Math.floor(Math.random()*61);//using angles between 0 and 60 degrees
-    const angleString=angle.toPrecision(3);
+    const angleString=toLatexPrecision(angle,3);
+    //note javascript is in rad mode
     const angleRad=angle*Math.PI/180;
     const range=2*speed*speed*Math.cos(angleRad)*Math.sin(angleRad)/9.81;
-    const height=speed*speed*Math.sin(angleRad)*Math.sin(angleRad)/(2*9.81);          
-    //Number.toPrecision(), x.toPrecision(4) -> x with 4 siginificant digits, does
-    //conversion to scientific if necessary
-//and put them in the template literal, which is then returned
-return `An object is launched at \\(${speed}\\frac{\\text{m}}{\\text{s}}\\) at an angle of \\(${angleString}^\\circ\\) to the
+    const height=speed*speed*Math.sin(angleRad)*Math.sin(angleRad)/(2*9.81);
+    const rangeString=toLatexPrecision(range,3);
+    const heightString=toLatexPrecision(height,3);
+return `<p>An object is launched at \\(${speed}\\frac{\\text{m}}{\\text{s}}\\) at an angle of \\(${angleString}^\\circ\\) to the
 horizontal. Determine its range and maximum height.
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="projectiles">more</span> questions of this type.
+<div class="answer hiddenContent div" id="orge8b9fda">
+<p>
+Range: \\(${rangeString}\\)m, Height: \\(${heightString}\\)m
+</p>
+</div>
 <ol class="org-ol hiddenHintList">
 <li>The initial velocity is \\(\\vec{v}=(${speedString}\\cos ${angleString},${speedString}\\sin ${angleString})\\) and the acceleration</li>
 <li>is \\(\\vec{a}=(0,-9.81)\\). This motion is described by</li>
@@ -48,9 +170,10 @@ the object lands.</li>
 <li>To find the range, this has to be inserted back into the horizontal component,
 which becomes
 \\[d_x=${speedString}\\cos ${angleString} \\frac{2\\times ${speedString}\\sin ${angleString} }{9.81}=\\frac{2\\times${speedString}^2\\sin ${angleString} \\cos ${angleString} }{9.81}=${range},\\]
-so the range is \\(${range.toPrecision(3)}\\)m after rounding to three significant digits.</li>
+so the range is \\(${toLatexPrecision(range,3)}\\)m after rounding to three significant digits.</li>
 <li>For the height, \\[0=\\sin^2${angleString}\\times ${speedString}^2-2\\times9.81 d_y\\] needs to be computed,</li>
 <li>which leads to \\[d_y=\\frac{${speedString}^2\\sin^2${angleString}}{2\\times 9.81}=${height},\\]
-or \\(${height.toPrecision(3)}\\)m. when rounded to three significant digits</li>
+or \\(${toLatexPrecision(height,3)}\\)m when rounded to three significant digits</li>
 </ol>`;
 }
+// Projectiles:1 ends here
