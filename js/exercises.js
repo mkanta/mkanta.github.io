@@ -8,9 +8,13 @@ Array.from(document.querySelectorAll(".questionList"),
 function hintListener(evt){
     //check if there is a request from answer-request
     if(evt.target.matches("span.answer-request")){
-        const ansDiv=evt.currentTarget.querySelector("div.answer");
+        //this should be the div.answer in the current li
+        const ansDiv=evt.target.parentElement.querySelector("div.answer");
         if(ansDiv!==null) {
+            //make the answer visible
             ansDiv.classList.toggle("hiddenContent");
+            //and scroll it into view at the bottom
+            ansDiv.scrollIntoView(false);
          }
         return false;
     }
@@ -21,6 +25,8 @@ function hintListener(evt){
         const newLi=document.createElement("li");
         newLi.innerHTML=getMoreFunction(evt.target.dataset.call)();
         evt.currentTarget.appendChild(newLi);
+        //scroll into view if below bottom
+        newLi.scrollIntoView(false);//bottom of newLi matches bottom of view
         //run mathjax on this
         MathJax.typesetPromise([evt.currentTarget]);
         return false;
@@ -49,8 +55,28 @@ function hintListener(evt){
         } else {
             //make the hint visible
             fstHidden.classList.remove("hiddenHint");
+            //and scroll it into view from the bottom
+            fstHidden.scrollIntoView(false);
         }
     }
     return false;
  }
 // Exercises:6 ends here
+
+// [[file:../tutoring/Common/exercises.org::*Utilities][Utilities:1]]
+//a utility function to translate numbers to their latex equivalents in the requested
+//precision
+function toLatexPrecision(num,prec){
+    let lastChar="";
+    return Array.prototype.reduce.call(num.toPrecision(prec),
+                                (acc,currChar)=>{
+                                    switch(currChar){
+                                    case " ": 
+                                    case "+": return acc;
+                                    case "e": lastChar="}";
+                                              return acc+"\\times 10^{";
+                                    default: return acc+currChar;
+                                    }
+                                },"")+lastChar;
+}
+// Utilities:1 ends here
