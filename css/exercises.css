@@ -14,6 +14,14 @@
 span.answer-request, span.hint-request, span.more-request {
     background-color: gold;
     color: DarkGreen;
+    cursor: pointer;
+}
+span.answer-request:hover, span.hint-request:hover, span.more-request:hover {
+    background-color: DarkGreen;
+    color: gold;
+}
+div.answer{
+    background: lightgreen;
 }
 div[class^="outline-text"] {
    max-width:50%;
