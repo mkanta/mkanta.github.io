@@ -8,6 +8,7 @@ function getMoreFunction(fstring){
     case "projectiles":return projectiles;
     case "initvelocity":return initvelocity;
     case "fallpath":return fallpath;
+    case "crossingDirection":return crossingDirection;
     default: return (()=> "No function "+fstring+" known to match");
     }
 }
@@ -40,7 +41,7 @@ function initvelocity(){
 
   Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
   <span class="more-request" data-call="initvelocity">more</span> questions of this type.
-  <div class="answer hiddenContent div" id="orgf48819f">
+  <div class="answer hiddenContent div">
   <p>
   Initial velocity: \\((${horizontalString},${verticalString})\\) m/s, Horizontal:\\(${horizontalString}\\) m/s, Vertical: \\(${verticalString}\\) m/s
   </p>
@@ -96,7 +97,7 @@ ground after \\(${timeString}\\) s. Determine its range and the height from whic
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="fallpath">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orgb6d74a1">
+<div class="answer hiddenContent div">
 <p>
 Range: \\(${rangeString}\\) m, Height: \\(${absHeightString}\\) m
 </p>
@@ -146,7 +147,7 @@ horizontal. Determine its range and maximum height.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="projectiles">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orge8b9fda">
+<div class="answer hiddenContent div" >
 <p>
 Range: \\(${rangeString}\\)m, Height: \\(${heightString}\\)m
 </p>
@@ -177,3 +178,83 @@ or \\(${toLatexPrecision(height,3)}\\)m when rounded to three significant digits
 </ol>`;
 }
 // Projectiles:1 ends here
+
+// [[file:generated.org::*Relative Motion][Relative Motion:1]]
+function crossingDirection(){
+      //using speeds between 0.1 and 10 m/s
+      const riverSpeed= (() => {const rv=Math.random()*10+0.1;
+                          if(rv<10){//want 3 significant digits
+                              return Math.round(rv*100)/100;
+                          } else if(rv<1){//want 3 significant digits
+                              return Math.round(rv*1000)/1000;
+                          } else {
+                              return Math.round(rv);
+                          }})();
+      const riverSpeedString = toLatexPrecision(riverSpeed,3);
+      //and angles between 0 and 180 degrees
+      const riverAngle= Math.floor(Math.random()*180);
+      const riverAngleString=toLatexPrecision(riverAngle,3);
+      const riverAngleRad=riverAngle*Math.PI/180;
+      //1 to 20 m/s up to 80 km/h
+      const boatSpeed= (() => {const rv=Math.random()*20+1;
+                          if(rv<10){//want 3 significant digits
+                              return Math.round(rv*100)/100;
+                          } else {
+                              return Math.round(rv);
+                          }})();
+      const boatSpeedString = toLatexPrecision(boatSpeed,3);
+      //and angles between 0 and 60 degrees
+      const boatAngle=riverAngle+90.0; //what about
+      const boatAngleString=toLatexPrecision(boatAngle,3);
+      const boatAngleRad=boatAngle*Math.PI/180;
+      const river_x=riverSpeed*Math.cos(riverAngleRad);
+      const river_xString=toLatexPrecision(river_x,3);
+      const river_y=riverSpeed*Math.sin(riverAngleRad);
+      const river_yString=toLatexPrecision(river_y,3);
+      const boat_x=boatSpeed*Math.cos(boatAngleRad);
+      const boat_xString=toLatexPrecision(boat_x,3);
+      const boat_y=boatSpeed*Math.sin(boatAngleRad);
+      const boat_yString=toLatexPrecision(boat_y,3);
+      const combined_x=boat_x+river_x;
+      const combined_xString=toLatexPrecision(combined_x,3);
+      const combined_y=boat_y+river_y;
+      const combined_yString=toLatexPrecision(combined_y,3);
+      const resultSpeedString=toLatexPrecision(Math.sqrt(combined_x*combined_x+combined_y*combined_y),3);
+      const resultAngleString=(() => {const rad=Math.atan2(combined_y,combined_x);
+                                     const deg=rad*180/Math.PI;
+                                     return toLatexPrecision(deg<0?360+deg:deg,3);
+                                     })();
+
+
+      return `<p>
+  A boat running at \\(${boatSpeedString}\\) m/s relative to the water crosses a river flowing \\(${riverSpeedString}\\) m/s
+  at \\(${riverAngleString}^\\circ\\). Determine the velocity of the boat relative to an observer at rest
+  watching from a river bank if the boat goes straight across at a right angle
+  to the river.
+  </p>
+  Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+  <span class="more-request" data-call="crossingDirection">more</span> questions of this type.
+  <div class="answer hiddenContent div">
+  <p>
+  \\(${resultSpeedString}\\) m/s at \\(${resultAngleString}^\\circ\\).
+  </p>
+
+  </div>
+  <ol class="org-ol hiddenHintList">
+  <li>Since the direction of \\(${riverAngleString}^\\circ\\) represents a cartesian angle
+  the velocity of the water with respect to ground is</li>
+  <li>\\[\\vec{v}_1=(${riverSpeedString}\\cos ${riverAngleString},8.0\\sin ${riverAngleString})=(${river_xString}, ${river_yString})\\frac{\\text{m}}{\\text{s}}.\\]</li>
+  <li>The boat runs at an angle of \\(90.0^\\circ\\) with respect to the river, hence at
+  a cartesian angle of \\(${riverAngleString}^\\circ+90.0^\\circ=${boatAngleString}^\\circ\\).</li>
+  <li>Therefore, the boat's velocity vector is
+  \\[\\vec{v}_2=(${boatSpeedString}\\cos ${boatAngleString},${boatSpeedString}\\sin ${boatAngleString})=(${boat_xString}, ${boat_yString})\\frac{\\text{m}}{\\text{s}}.\\]</li>
+  <li>The velocity with repect to the stationary observer is
+  \\[\\vec{v}_1+\\vec{v}_2=(${river_xString}, ${river_yString})
+                          +(${boat_xString}, ${boat_yString})
+                          =(${combined_xString}, ${combined_yString})\\frac{\\text{m}}{\\text{s}},\\]which</li>
+  <li>has length \\[\\sqrt{${combined_xString}^2+${combined_yString}^2}=${resultSpeedString}\\text{m/s},\\] and
+  </li><li>
+  cartesian angle \\(${resultAngleString}\\). </li>
+  </ol>`;
+}
+// Relative Motion:1 ends here
