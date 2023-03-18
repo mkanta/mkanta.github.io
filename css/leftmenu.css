@@ -69,9 +69,9 @@ h1.title { /*may want to center this*/
 
 /* [[file:css.org::*The Table of Contents][The Table of Contents:6]] */
 #content > div[id^="outline-container-org"]{
-     position:absolute;
-     left:300px;/*Line up with left end of #table-of-content*/
-     padding-left: 10px;
+     position:relative;
+     left:20px; /*Line up with left end of #table-of-content*/
+     /* padding-left: 10px; not valid for relative position*/
  }
  /*The placement of these depends on the header height and the menu width*/
  /* no good
