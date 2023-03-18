@@ -13,8 +13,12 @@ function hintListener(evt){
         if(ansDiv!==null) {
             //make the answer visible
             ansDiv.classList.toggle("hiddenContent");
+            //this apparently checks if the element is obscured, see
+            //https://stackoverflow.com/questions/19669786/check-if-element-is-visible-in-dom
+            if(!( ansDiv.offsetWidth || ansDiv.offsetHeight || ansDiv.getClientRects().length )){
             //and scroll it into view at the bottom
-            ansDiv.scrollIntoView(false);
+                ansDiv.scrollIntoView(false);
+            }
          }
         return false;
     }
@@ -25,7 +29,8 @@ function hintListener(evt){
         const newLi=document.createElement("li");
         newLi.innerHTML=getMoreFunction(evt.target.dataset.call)();
         evt.currentTarget.appendChild(newLi);
-        //scroll into view if below bottom
+        //scroll into view if below bottom, how to check? see above for the
+        //answer-request
         newLi.scrollIntoView(false);//bottom of newLi matches bottom of view
         //run mathjax on this
         MathJax.typesetPromise([evt.currentTarget]);
