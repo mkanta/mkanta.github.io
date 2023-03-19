@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-18 Sat 15:32 -->
+<!-- 2023-03-19 Sun 16:32 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Physics Exercises</title>
@@ -303,7 +303,7 @@ initial vertical velocity.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="initvelocity">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org0b63c1b">
+<div class="answer hiddenContent div" id="org375bd8d">
 <p>
 Initial velocity: \((8.19,-5.74)\) m/s, Horizontal:\(8.19\) m/s, Vertical: \(-5.74\) m/s
 </p>
@@ -330,7 +330,7 @@ ground after \(0.500\) s. Determine its range and the height from which it was l
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="fallpath">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orgd37fea2">
+<div class="answer hiddenContent div" id="org6ee3b60">
 <p>
 Range: \(0.881\) m, Height at Launch:\(1.84\) m
 </p>
@@ -389,7 +389,7 @@ horizontal. Determine its range and maximum height.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="projectiles">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orgff57dbd">
+<div class="answer hiddenContent div" id="orgefa7f0d">
 <p>
 Range:\(19.9\)m, Height:\(2.87\)m
 </p>
@@ -448,7 +448,7 @@ the swimmer relative to an observer at rest watching from a bank of the river.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="crossingDirection">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orgc09cbfa">
+<div class="answer hiddenContent div" id="org8d7abe8">
 <p>
 \(8.25\) m/s at \(44^\circ\) north of west.
 </p>
@@ -476,15 +476,114 @@ north of west.</li>
 <h2 id="org7c44b8b"><span class="section-number-2">2.</span> Dynamics</h2>
 <div class="outline-text-2" id="text-2">
 <ol class="org-ol questionList">
-<li>How much force needs to be applied to a \(60\) kg object to accelerate it at
-\(4.0\text{m}/\text{s}^2\) if there is a friction force of \(40\) N?</li>
-<li>A \(20\) kg object experiences a \(15\) N force pulling south, a \(25\) N force pulling
-west and a \(20\) N force pulling at \(30^\circ\) S of E. What is the resulting acceleration
-of the object?</li>
-<li>A force of \(130\) N East is applied for \(2.0\) seconds to a \(50\) kg object initially
-at rest. What is its displacement?</li>
-<li>A force of \(60\) N East is applied for \(5.0\) s to a \(15\) kg object travelling East
-at \(50\) m/s. What is the resulting velocity if there is a friction force of \(20\) N?</li>
+<li><p>
+How much force needs to be applied to a \(60\) kg object to accelerate it at
+\(4.0\text{m}/\text{s}^2\) if there is a friction force of \(40\) N?
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="notImplemented">more</span> questions of this type.
+<div class="answer hiddenContent div" id="org5896db6">
+<p>
+\(280\) N opposite to the friction force.
+</p>
+
+</div>
+<ol class="org-ol hiddenHintList">
+<li><p>
+With the applied force \(\vec{F}_a\) and the friction force \(\vec{F}_f\) acting on
+the object, the net force \(\vec{F}_\text{net}\) becomes
+</p>
+\begin{equation}\label{dyn1 force equation}
+\vec{F}_\text{net}=\vec{F}_a+\vec{F}_f.
+\end{equation}</li>
+<li>Since the net force is the force accelerating the object, it is related to the
+acceleration by Newton's second law
+\[\vec{F}_\text{net}=m\vec{a}=4.0\times 60=240.\]</li>
+<li>The friction force always acts opposite to the net force, so with a positive
+friction force, the net force is negative</li>
+<li>and equation (\ref{dyn1 force equation}) becomes
+\[-240=\vec{F}_a+40.\]</li>
+<li>Solving for \(\vec{F}_a\) results in</li>
+<li>\(\vec{F}_a=-280\) N, hence</li>
+<li>a force of \(280\) N opposite to the friction force needs to be applied to
+the object.</li>
+</ol></li>
+</ol>
+<ol class="org-ol questionList">
+<li><p>
+A \(20\) kg object experiences a \(15\) N force pulling south, a \(25\) N force pulling
+west and a \(20\) N force pulling at \(30^\circ\) S of E. What is the resulting
+acceleration of the object?
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="notImplemented">more</span> questions of this type.
+<div class="answer hiddenContent div" id="org23ae97a">
+<p>
+\(26\) N at \(73^\circ\) S of W.
+</p>
+
+</div>
+<ol class="org-ol hiddenHintList">
+<li>With the \(15\) N force pulling south represented by
+\[\vec{F}_1=15(0,-1)=(0,-15),\]</li>
+<li>the \(25\) N force pulling west represented by
+\[\vec{F}_2=25(-1,0)=(-25,0),\]</li>
+<li>and the the \(20\) N force at \(30^\circ\) S of E represented by
+\[\vec{F}_3=20(\cos 330,\sin 330)=(17.3, -10.0)\]</li>
+<li>the net force
+\[\vec{F}_\text{net}=\vec{F}_1+\vec{F}_2+\vec{F}_3\] becomes</li>
+<li>\[\vec{F}_\text{net}=(-25,-15)+(17,-10)=\(-7.7, -25\),\] which correponds to</li>
+<li>a force of \(26\) N at \(73\^&circ;) S of W.</li>
+</ol></li>
+</ol>
+<ol class="org-ol questionList">
+<li><p>
+A force of \(130\) N East is applied for \(2.0\) seconds to a \(50\) kg object initially
+at rest. What is its displacement?
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="notImplemented">more</span> questions of this type.
+<div class="answer hiddenContent div" id="org6733257">
+<p>
+\(5.2\) m East.
+</p>
+
+</div>
+<ol class="org-ol hiddenHintList">
+<li>Since no other forces are involved, the applied force is the same as the net force
+and provides the acceleration of the object as
+\[\vec{a}=\frac{{F}_\text{net}}{m}=\frac{130}{50}=2.6\frac{\text{m}}{\text{s}^2}\text{East}.\]</li>
+<li>The displacement then follows from
+\[\vec{d}=\vec{v}_it+\frac{1}{2}\vec{a}t^2,\]</li>
+<li>which evaluates to
+\[\vec{d}=0+\vec{1}{2}\times 2.6\times 2.0^2=5.2\text{ m East}.\]</li>
+</ol></li>
+</ol>
+<ol class="org-ol questionList">
+<li><p>
+A force of \(60\) N East is applied for \(5.0\) s to a \(15\) kg object travelling East
+at \(50\) m/s. What is the resulting velocity if there is a friction force of \(20\) N?
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="notImplemented">more</span> questions of this type.
+<div class="answer hiddenContent div" id="org0354432">
+<p>
+\(63\) m/s East.
+</p>
+
+</div>
+<ol class="org-ol hiddenHintList">
+<li>The forces involved here are an applied force of \(60\) N East and a counteracting
+friction force of \(20\) N West, so the net force is</li>
+<li>\[\vec{F}_\text{net}=60-20=40\text{ N East}.\]</li>
+<li>The net force provides, as always, the acceleration according to Newton's second
+law as</li>
+<li>\[\vec{a}=\frac{\vec{F}_\text{net}}{m}=\frac{40}{15}=2.7\frac{\text{m}}{\text{s}^2}\text{ East}.\]</li>
+<li>With
+\vec{v}(t)=\vec{v}<sub>i</sub>+\vec{a}t,\]</li>
+<li>this results in a velocity of</li>
+<li>\[\vec{v}=50+2.7\times 5.0=63\frac{\text{m}}{\text{s}}\text{ East}.\]</li>
+</ol></li>
 </ol>
 </div>
 </div>
