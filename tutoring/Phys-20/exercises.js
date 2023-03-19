@@ -9,13 +9,21 @@ function getMoreFunction(fstring){
     case "initvelocity":return initvelocity;
     case "fallpath":return fallpath;
     case "crossingDirection":return crossingDirection;
+    case "notImplemented":return notImplemented;
+    case "underConstruction":return underConstruction;
     default: return (()=> "No function "+fstring+" known to match");
     }
 }
 // General Procedure:2 ends here
 
 // [[file:generated.org::*Falling Objects][Falling Objects:1]]
-function initvelocity(){
+function notImplemented(){
+          return "sorry, this is not implemented yet";
+      }
+      function underConstruction(){
+          return "under construction, come back soon.";
+      }
+      function initvelocity(){
           const speed= (() => {const rv=Math.random()*1000+1;//1 to 1000 m/s
                               if(rv<10){//want 3 significant digits
                                   return Math.round(rv*100)/100;
