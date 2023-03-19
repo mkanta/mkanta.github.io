@@ -70,24 +70,19 @@ h1.title { /*may want to center this*/
 /* The Table of Contents:4 ends here */
 
 /* [[file:css.org::*The Table of Contents][The Table of Contents:6]] */
-/*#content > div[id^="outline-container-org"]{
-     position:relative;
-     left:20px; /*Line up with left end of #table-of-content*/
-     /* padding-left: 10px; not valid for relative position*/
- }*/
- /*The placement of these depends on the header height and the menu width*/
- /* no good
- div.top-left{
-     position: fixed;
-     top: 50px;
-     left: 300 px;
-     display:block !important;
- }*/
- /*revert colours of anchor, only one should be active*/
- #table-of-contents a.on-display {
-  background-color: gold;
-  color: DarkGreen;
- }
+/*The placement of these depends on the header height and the menu width*/
+/* no good
+div.top-left{
+    position: fixed;
+    top: 50px;
+    left: 300 px;
+    display:block !important;
+}*/
+/*revert colours of anchor, only one should be active*/
+#table-of-contents a.on-display {
+ background-color: gold;
+ color: DarkGreen;
+}
 /* The Table of Contents:6 ends here */
 
 /* [[file:css.org::*Headings][Headings:1]] */
