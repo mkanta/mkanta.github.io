@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-19 Sun 16:32 -->
+<!-- 2023-03-20 Mon 13:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Physics Exercises</title>
@@ -254,7 +254,13 @@ window.MathJax = {
 <li><a href="#org000223c">1.3. Relative Motion</a></li>
 </ul>
 </li>
-<li><a href="#org7c44b8b">2. Dynamics</a></li>
+<li><a href="#org7c44b8b">2. Dynamics</a>
+<ul>
+<li><a href="#orgca22641">2.1. Pulling against Friction</a></li>
+<li><a href="#org41663c3">2.2. Pulling from Different Sides</a></li>
+<li><a href="#orgab6d5ee">2.3. Kinematics of Pulled Objects</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -303,7 +309,7 @@ initial vertical velocity.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="initvelocity">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org375bd8d">
+<div class="answer hiddenContent div" id="orgf8c0ae4">
 <p>
 Initial velocity: \((8.19,-5.74)\) m/s, Horizontal:\(8.19\) m/s, Vertical: \(-5.74\) m/s
 </p>
@@ -330,7 +336,7 @@ ground after \(0.500\) s. Determine its range and the height from which it was l
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="fallpath">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org6ee3b60">
+<div class="answer hiddenContent div" id="org658b918">
 <p>
 Range: \(0.881\) m, Height at Launch:\(1.84\) m
 </p>
@@ -389,7 +395,7 @@ horizontal. Determine its range and maximum height.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="projectiles">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orgefa7f0d">
+<div class="answer hiddenContent div" id="org6ae2901">
 <p>
 Range:\(19.9\)m, Height:\(2.87\)m
 </p>
@@ -448,7 +454,7 @@ the swimmer relative to an observer at rest watching from a bank of the river.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="crossingDirection">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org8d7abe8">
+<div class="answer hiddenContent div" id="orga85586d">
 <p>
 \(8.25\) m/s at \(44^\circ\) north of west.
 </p>
@@ -475,27 +481,44 @@ north of west.</li>
 <div id="outline-container-org7c44b8b" class="outline-2">
 <h2 id="org7c44b8b"><span class="section-number-2">2.</span> Dynamics</h2>
 <div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgca22641" class="outline-3">
+<h3 id="orgca22641"><span class="section-number-3">2.1.</span> Pulling against Friction</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+In the simplest case, objects are pulled against some resisting force, such as friction
+or gravity. Three forces are involved here, the resisting force, the applied force
+and the net force. The latter determines the acceleration of the object according to
+Newton's second law.
+</p>
+
+<p>
+The equation
+</p>
+\begin{equation}\label{dyn1 force equation}
+\vec{F}_\text{net}=\vec{F}_a+\vec{F}_f.
+\end{equation}
+<p>
+models this behaviour. 
+</p>
 <ol class="org-ol questionList">
 <li><p>
 How much force needs to be applied to a \(60\) kg object to accelerate it at
 \(4.0\text{m}/\text{s}^2\) if there is a friction force of \(40\) N?
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
-<span class="more-request" data-call="notImplemented">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org5896db6">
+<span class="more-request" data-call="simplePullAcceleration">more</span> questions of this type.
+<div class="answer hiddenContent div" id="orgcd201cb">
 <p>
 \(280\) N opposite to the friction force.
 </p>
 
 </div>
 <ol class="org-ol hiddenHintList">
-<li><p>
-With the applied force \(\vec{F}_a\) and the friction force \(\vec{F}_f\) acting on
-the object, the net force \(\vec{F}_\text{net}\) becomes
-</p>
-\begin{equation}\label{dyn1 force equation}
-\vec{F}_\text{net}=\vec{F}_a+\vec{F}_f.
-\end{equation}</li>
+<li>With the applied force \(\vec{F}_a\) and the friction force \(\vec{F}_f\) acting on
+the object, the net force \(\vec{F}_\text{net}\) becomes, according to equation
+(\ref{dyn1 force equation}),
+\[ \vec{F}_\text{net}=\vec{F}_a+\vec{F}_f. \]</li>
 <li>Since the net force is the force accelerating the object, it is related to the
 acceleration by Newton's second law
 \[\vec{F}_\text{net}=m\vec{a}=4.0\times 60=240.\]</li>
@@ -509,6 +532,24 @@ friction force, the net force is negative</li>
 the object.</li>
 </ol></li>
 </ol>
+</div>
+</div>
+<div id="outline-container-org41663c3" class="outline-3">
+<h3 id="org41663c3"><span class="section-number-3">2.2.</span> Pulling from Different Sides</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+In tug-of-war type situations, several forces act in different directions on an object.
+Again, the movement of the object is determined by the resulting net force according to
+Newton's second law.
+</p>
+
+<p>
+With forces \(\vec{F}_1,\,\vec{F}_2,\ldots,\vec{F}_n\), the net force becomes the
+sum
+</p>
+\begin{equation}\label{dyn2 force equation}
+\vec{F}_\text{net}=\vec{F}_1+\vec{F}_2+\cdots+\vec{F}_n.
+\end{equation}
 <ol class="org-ol questionList">
 <li><p>
 A \(20\) kg object experiences a \(15\) N force pulling south, a \(25\) N force pulling
@@ -517,7 +558,7 @@ acceleration of the object?
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="notImplemented">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org23ae97a">
+<div class="answer hiddenContent div" id="org9620b46">
 <p>
 \(26\) N at \(73^\circ\) S of W.
 </p>
@@ -528,14 +569,24 @@ Click to see the <span class="answer-request">answer</span>, <span class="hint-r
 \[\vec{F}_1=15(0,-1)=(0,-15),\]</li>
 <li>the \(25\) N force pulling west represented by
 \[\vec{F}_2=25(-1,0)=(-25,0),\]</li>
-<li>and the the \(20\) N force at \(30^\circ\) S of E represented by
+<li>and the \(20\) N force at \(30^\circ\) S of E represented by
 \[\vec{F}_3=20(\cos 330,\sin 330)=(17.3, -10.0)\]</li>
-<li>the net force
-\[\vec{F}_\text{net}=\vec{F}_1+\vec{F}_2+\vec{F}_3\] becomes</li>
+<li>the net force is calculated according to equation (\ref{dyn2 force equation})
+\[\vec{F}_\text{net}=\vec{F}_1+\vec{F}_2+\vec{F}_3\] and becomes</li>
 <li>\[\vec{F}_\text{net}=(-25,-15)+(17,-10)=\(-7.7, -25\),\] which correponds to</li>
 <li>a force of \(26\) N at \(73\^&circ;) S of W.</li>
 </ol></li>
 </ol>
+</div>
+</div>
+<div id="outline-container-orgab6d5ee" class="outline-3">
+<h3 id="orgab6d5ee"><span class="section-number-3">2.3.</span> Kinematics of Pulled Objects</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Eventually, the goal in all the dynamics exercises is the calculation of the movement of
+objects subject to certain forces. This is achieved by calculating the net force and applying
+Newton's second law to determine the acceleration caused by it.
+</p>
 <ol class="org-ol questionList">
 <li><p>
 A force of \(130\) N East is applied for \(2.0\) seconds to a \(50\) kg object initially
@@ -543,7 +594,7 @@ at rest. What is its displacement?
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="notImplemented">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org6733257">
+<div class="answer hiddenContent div" id="org4f8bfa4">
 <p>
 \(5.2\) m East.
 </p>
@@ -566,7 +617,7 @@ at \(50\) m/s. What is the resulting velocity if there is a friction force of \(
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="notImplemented">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org0354432">
+<div class="answer hiddenContent div" id="org2eb4e15">
 <p>
 \(63\) m/s East.
 </p>
@@ -585,6 +636,7 @@ law as</li>
 <li>\[\vec{v}=50+2.7\times 5.0=63\frac{\text{m}}{\text{s}}\text{ East}.\]</li>
 </ol></li>
 </ol>
+</div>
 </div>
 </div>
 </div>
