@@ -9,6 +9,7 @@ function getMoreFunction(fstring){
     case "initvelocity":return initvelocity;
     case "fallpath":return fallpath;
     case "crossingDirection":return crossingDirection;
+    case "simplePullAcceleration":return simplePullAcceleration;
     case "notImplemented":return notImplemented;
     case "underConstruction":return underConstruction;
     default: return (()=> "No function "+fstring+" known to match");
@@ -266,3 +267,57 @@ function crossingDirection(){
   </ol>`;
 }
 // Relative Motion:1 ends here
+
+// [[file:generated.org::*Pulling Objects][Pulling Objects:1]]
+function simplePullAcceleration(){
+      const mass=Math.floor(Math.random()*90)+10; //10 to 99 kg
+      const massString=toLatexPrecision(mass,3);
+      const acc=(()=> {const rac=Math.random()*10+0.1;
+                       if (rac<1.0) {
+                           return Math.round(1000*rac)/1000;
+                       } else if (rac<10.0) {
+                           return Math.round(100*rac)/100;
+                       } else {
+                           return Math.round(10*rac)/10;
+                       }})();
+      const accelString=toLatexPrecision(acc,3);
+      const friction=Math.floor(Math.random()*90)+10; //10 to 99 N
+      const frictionString=toLatexPrecision(friction,3);
+      const netForce=-mass*acc;
+      const netForceString=toLatexPrecision(netForce,3);
+      const applied=netForce-friction;
+      const appliedString=toLatexPrecision(applied,3);
+      const appliedAbsString=toLatexPrecision(Math.abs(applied),3);
+      return `<p>
+How much force needs to be applied to a \\(${massString}\\) kg object to accelerate it at
+\\(${accelString}\\text{m}/\\text{s}^2\\) if there is a friction force of \\(${frictionString}\\) N?
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="simplePullAcceleration">more</span> questions of this type.
+<div class="answer hiddenContent div">
+<p>
+\\(${appliedAbsString}\\) N opposite to the friction force.
+</p>
+</div>
+<ol class="org-ol hiddenHintList">
+<li><p>
+With the applied force \\(\\vec{F}_a\\) and the friction force \\(\\vec{F}_f\\) acting on
+the object, the net force \\(\\vec{F}_\\text{net}\\) becomes
+</p>
+\\[
+\\vec{F}_\\text{net}=\\vec{F}_a+\\vec{F}_f
+\\] according to equation (\\ref{dyn1 force equation}).</li>
+<li>Since the net force is the force accelerating the object, it is related to the
+acceleration by Newton's second law
+\\[\\vec{F}_\\text{net}=m\\vec{a}=${accelString}\\times ${massString}=2${frictionString}.\\]</li>
+<li>The friction force always acts opposite to the net force, so with a positive
+friction force, the net force is negative</li>
+<li>and equation (\\ref{dyn1 force equation}) becomes
+\\[${netForceString}=\\vec{F}_a+${frictionString}\\]</li>
+<li>Solving for \\(\\vec{F}_a\\) results in</li>
+<li>\\(\\vec{F}_a=${appliedString}\\) N, hence</li>
+<li>a force of \\(${appliedAbsString}\\) N opposite to the friction force needs to be applied to
+the object.</li>
+</ol>`;
+      }
+// Pulling Objects:1 ends here
