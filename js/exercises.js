@@ -15,9 +15,19 @@ function hintListener(evt){
             ansDiv.classList.toggle("hiddenContent");
             //this apparently checks if the element is obscured, see
             //https://stackoverflow.com/questions/19669786/check-if-element-is-visible-in-dom
-            if(!( ansDiv.offsetWidth || ansDiv.offsetHeight || ansDiv.getClientRects().length )){
-            //and scroll it into view at the bottom
+            //seems to be always false, no scrolling at all, investigate!
+            //Probably would have to use the viewport size and the client rectangle
+            //try this: compare bounding rectangle to document.documentElement.clientHeight,
+            //if the top is bigger than that, it is below visibility->scroll to bottom,
+            //if the bottom is negative it is above visibility -> scroll to top
+            const elRect=ansDiv.getBoundingClientRect();
+            //element bottom is below viewport
+            if(elRect.bottom >= document.documentElement.clientHeight){
+            //scroll it into view at the bottom
                 ansDiv.scrollIntoView(false);
+            } else if (elRect.top <= 0) {//past the top, shouldn't happen
+                //scroll into view at top
+                ansDiv.scrollIntoView();
             }
          }
         return false;
@@ -29,9 +39,15 @@ function hintListener(evt){
         const newLi=document.createElement("li");
         newLi.innerHTML=getMoreFunction(evt.target.dataset.call)();
         evt.currentTarget.appendChild(newLi);
-        //scroll into view if below bottom, how to check? see above for the
-        //answer-request
-        newLi.scrollIntoView(false);//bottom of newLi matches bottom of view
+        const elRect=newLi.getBoundingClientRect();
+        //element bottom is below viewport
+        if(elRect.bottom >= document.documentElement.clientHeight){
+            //scroll it into view at the bottom
+                newLi.scrollIntoView(false);
+        } else if (elRect.top <= 0) {//past the top, shouldn't happen
+                //scroll into view at top
+                newLi.scrollIntoView();
+        }
         //run mathjax on this
         MathJax.typesetPromise([evt.currentTarget]);
         return false;
@@ -57,11 +73,21 @@ function hintListener(evt){
             //no more hiddenHints, reset the list back to everything hidden
             partials.classList.remove("partialHintList");
             partials.classList.add("hiddenHintList");
+            //TODO:this should scroll the parent to the point of the last
+            //visible hint, because this is where the reader is looking
         } else {
             //make the hint visible
             fstHidden.classList.remove("hiddenHint");
-            //and scroll it into view from the bottom
-            fstHidden.scrollIntoView(false);
+            //and scroll it into view from the bottom if necessary
+            const elRect=fstHidden.getBoundingClientRect();
+            //element bottom is below viewport
+            if(elRect.bottom >= document.documentElement.clientHeight){
+                //scroll it into view at the bottom
+                    fstHidden.scrollIntoView(false);
+            } else if (elRect.top <= 0) {//past the top, shouldn't happen
+                    //scroll into view at top
+                    fstHidden.scrollIntoView();
+            }
         }
     }
     return false;
