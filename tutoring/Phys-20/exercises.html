@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-20 Mon 13:38 -->
+<!-- 2023-03-21 Tue 12:37 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Physics Exercises</title>
@@ -257,8 +257,9 @@ window.MathJax = {
 <li><a href="#org7c44b8b">2. Dynamics</a>
 <ul>
 <li><a href="#orgca22641">2.1. Pulling against Friction</a></li>
-<li><a href="#org41663c3">2.2. Pulling from Different Sides</a></li>
-<li><a href="#orgab6d5ee">2.3. Kinematics of Pulled Objects</a></li>
+<li><a href="#org7e0159f">2.2. Pulling at an Angle</a></li>
+<li><a href="#org41663c3">2.3. Pulling from Different Sides</a></li>
+<li><a href="#orgab6d5ee">2.4. Kinematics of Pulled Objects</a></li>
 </ul>
 </li>
 </ul>
@@ -309,7 +310,7 @@ initial vertical velocity.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="initvelocity">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orgf8c0ae4">
+<div class="answer hiddenContent div" id="orgad10e92">
 <p>
 Initial velocity: \((8.19,-5.74)\) m/s, Horizontal:\(8.19\) m/s, Vertical: \(-5.74\) m/s
 </p>
@@ -336,7 +337,7 @@ ground after \(0.500\) s. Determine its range and the height from which it was l
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="fallpath">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org658b918">
+<div class="answer hiddenContent div" id="org30054da">
 <p>
 Range: \(0.881\) m, Height at Launch:\(1.84\) m
 </p>
@@ -395,7 +396,7 @@ horizontal. Determine its range and maximum height.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="projectiles">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org6ae2901">
+<div class="answer hiddenContent div" id="org867752e">
 <p>
 Range:\(19.9\)m, Height:\(2.87\)m
 </p>
@@ -454,7 +455,7 @@ the swimmer relative to an observer at rest watching from a bank of the river.
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="crossingDirection">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orga85586d">
+<div class="answer hiddenContent div" id="org4f7cc1e">
 <p>
 \(8.25\) m/s at \(44^\circ\) north of west.
 </p>
@@ -508,7 +509,7 @@ How much force needs to be applied to a \(60\) kg object to accelerate it at
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="simplePullAcceleration">more</span> questions of this type.
-<div class="answer hiddenContent div" id="orgcd201cb">
+<div class="answer hiddenContent div" id="orgf2e1c4e">
 <p>
 \(280\) N opposite to the friction force.
 </p>
@@ -534,9 +535,61 @@ the object.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org41663c3" class="outline-3">
-<h3 id="org41663c3"><span class="section-number-3">2.2.</span> Pulling from Different Sides</h3>
+<div id="outline-container-org7e0159f" class="outline-3">
+<h3 id="org7e0159f"><span class="section-number-3">2.2.</span> Pulling at an Angle</h3>
 <div class="outline-text-3" id="text-2-2">
+<p>
+Pulling an object at an angle across a floor has two effects: the effective applied force
+is reduced and the normal force is affected. This is due to the fact that
+the effective applied force is the horizontal component of the applied force. The
+vertical component, on the other hand, will either lift the object upwards and thus
+reduce the amount of force required to keep it on the surface, or pull it downwards
+with the opposite effect.
+</p>
+<ol class="org-ol questionList">
+<li><p>
+A \(50\) kg object is dragged across a horizontal floor by applying a force of \(200\) N
+at an angle of \(30.0^\circ\) to the horizontal. If the coefficient of kinematic friction
+is \(\mu=0.300\), what is the acceleration experienced by the object?
+</p>
+Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
+<span class="more-request" data-call="simplePullAcceleration">more</span> questions of this type.
+<div class="answer hiddenContent div" id="orgc170b90">
+<p>
+\(1.12\text{m}/\text{s}^2\)
+</p>
+
+</div>
+<ol class="org-ol hiddenHintList">
+<li>The net force is calculated as
+\[\vec{F}_\text{net}=\vec{F}_\text{ah}+\vec{F}_f,\]
+where \(\vec{F}_\text{ah}\) is the horizontal component
+of the applied force \[\vec{F}_a=(200\cos 30,200\sin 30).\]</li>
+<li>This force has horizontal component
+\[F_\text{ah}=200\cos 30=173\text{ N}.\]</li>
+<li>The friction is calculated, as usual, from the coefficient of kinematic
+friction \(\mu=0.300\) and the normal force \(\vec{F}_N\).</li>
+<li>Due to the vertical component \(\vec{F}_\text{av}\) of the applied force,
+the normal force, which is the force required to keep the object from falling
+through the surface, is reduced by this amount, hence
+\[\vec{F}_N=-(\vec{F}_g+\vec{F}_\text{av}),\]</li>
+<li>leaving a magnitude of
+\[|F_N|=-(-9.81\times 50+200\sin 30)=9.81\times 50-200\sin 30=391.\]</li>
+<li>Thus the magnitude of friction becomes
+\[|F_f|=0.300\times 391=117,\]</li>
+<li>and the force of friction amounts to
+\[\vec{F}_f=-117\text{ N}.\]</li>
+<li>This leads to a net force of
+\[\vec{F}_\text{net}=173-117=56\text{ N}.\]
+The acceleration then becomes</li>
+<li>\[\vec{a}=\frac{\vec{F}_\text{net}}{m}=\frac{56}{50}=1.12\frac{\text{m}}{\text{s}^2}.\]</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org41663c3" class="outline-3">
+<h3 id="org41663c3"><span class="section-number-3">2.3.</span> Pulling from Different Sides</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 In tug-of-war type situations, several forces act in different directions on an object.
 Again, the movement of the object is determined by the resulting net force according to
@@ -558,7 +611,7 @@ acceleration of the object?
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="notImplemented">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org9620b46">
+<div class="answer hiddenContent div" id="orgb65a023">
 <p>
 \(26\) N at \(73^\circ\) S of W.
 </p>
@@ -580,8 +633,8 @@ Click to see the <span class="answer-request">answer</span>, <span class="hint-r
 </div>
 </div>
 <div id="outline-container-orgab6d5ee" class="outline-3">
-<h3 id="orgab6d5ee"><span class="section-number-3">2.3.</span> Kinematics of Pulled Objects</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="orgab6d5ee"><span class="section-number-3">2.4.</span> Kinematics of Pulled Objects</h3>
+<div class="outline-text-3" id="text-2-4">
 <p>
 Eventually, the goal in all the dynamics exercises is the calculation of the movement of
 objects subject to certain forces. This is achieved by calculating the net force and applying
@@ -594,7 +647,7 @@ at rest. What is its displacement?
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="notImplemented">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org4f8bfa4">
+<div class="answer hiddenContent div" id="org247e664">
 <p>
 \(5.2\) m East.
 </p>
@@ -617,7 +670,7 @@ at \(50\) m/s. What is the resulting velocity if there is a friction force of \(
 </p>
 Click to see the <span class="answer-request">answer</span>, <span class="hint-request">hints</span> or generate
 <span class="more-request" data-call="notImplemented">more</span> questions of this type.
-<div class="answer hiddenContent div" id="org2eb4e15">
+<div class="answer hiddenContent div" id="orgc45cc8a">
 <p>
 \(63\) m/s East.
 </p>
@@ -631,7 +684,7 @@ friction force of \(20\) N West, so the net force is</li>
 law as</li>
 <li>\[\vec{a}=\frac{\vec{F}_\text{net}}{m}=\frac{40}{15}=2.7\frac{\text{m}}{\text{s}^2}\text{ East}.\]</li>
 <li>With
-\vec{v}(t)=\vec{v}<sub>i</sub>+\vec{a}t,\]</li>
+\[\vec{v}(t)=\vec{v}_i+\vec{a}t,\]</li>
 <li>this results in a velocity of</li>
 <li>\[\vec{v}=50+2.7\times 5.0=63\frac{\text{m}}{\text{s}}\text{ East}.\]</li>
 </ol></li>
