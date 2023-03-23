@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-16 Thu 14:03 -->
+<!-- 2023-03-22 Wed 19:12 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Calculus Exercises</title>
@@ -193,8 +193,9 @@
 </style>
 <link rel="stylesheet" type="text/css" href="../../css/exercises.css" />
 <link rel="stylesheet" type="text/css" href="../../css/leftmenu.css" />
-<script src="../../js/exercises.js" defer/></script>
-<script src="../../js/leftmenu.js" defer/></script>
+<script src="../../js/exercises.js" defer></script>
+<script src="../../js/leftmenu.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjs@11.7.0/lib/browser/math.min.js" async></script>
 <script>
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
      function CodeHighlightOn(elem, id)
@@ -251,6 +252,7 @@ window.MathJax = {
 <li><a href="#orgb6707dc">1.3.2. Exercises 2: Integrals of Sums</a></li>
 <li><a href="#orgedb37a2">1.3.3. Exercises 3: Integration Variables</a></li>
 <li><a href="#orgb442aae">1.3.4. Exercises 4: Changing Variables</a></li>
+<li><a href="#orge003918">1.3.5. Exercises 5: Integrals of Products</a></li>
 </ul>
 </li>
 <li><a href="#orga01cbcb">1.4. Definite Integrals</a></li>
@@ -634,8 +636,50 @@ can be integrated by substitution.</li>
 </ol>
 </div>
 </div>
-</div>
+<div id="outline-container-orge003918" class="outline-4">
+<h4 id="orge003918"><span class="section-number-4">1.3.5.</span> Exercises 5: Integrals of Products</h4>
+<div class="outline-text-4" id="text-1-3-5">
+<p>
+Integrating products of functions is, in general, difficult and often fails.
+There are two main methods, integration by substitution and integration by
+parts.
+</p>
 
+<p>
+Integration by substitution involves a change of variables and works only
+if the integrand is of the form \(cu'(x)f(u(x))\), for a constant \(c\). This
+should always be tried first.
+</p>
+
+<p>
+In case of failure, integration by parts can be attempted. This is based on the
+product rule of differentiation,
+\[(f(x)g(x))' = f'(x)g(x)+f(x)g'(x).\] Integration turns this into
+</p>
+\begin{equation}\label{integration by parts}
+fg=\int f'(x)g(x)dx+\int f(x)g'(x)dx.
+\end{equation}
+<p>
+Example: Calculate \[\int x\sin xdx.\]
+In products like these, note that the derivative of \(x\) will be constant and drop out, so
+setting \(f(x)=x\) and \(g'(x)=\cos x\), \(g(x)\) becomes \(g(x)=\sin x\) and equation
+(\ref{integration by parts}) with these values reads
+\[x\sin x=\int \sin xdx+\int x\cos xdx,\]hence
+\[\int x\cos xdx=x\sin x-\int \sin x dx=x\sin x+\cos x +C.\]
+</p>
+<ol class="org-ol questionList">
+<li>Try to integrate \(\int x\sin x dx\) by parts again,  this time setting \(f'(x)=x\)
+and \(g(x)=\sin x\).</li>
+<li>Integrate \(\int x \cos xdx\) by parts.</li>
+<li>Integrate \(\int x e^x dx\) by parts.</li>
+<li>Integrate \(\int x^2 e^x dx\) by parts.</li>
+<li>Integrate \[\int \frac{\ln x}{x^2}dx\] by parts.</li>
+<li>Integrate \(\int \sec^2x\ln(|\sin x|)dx\) by parts.</li>
+<li>Integrate \(\int e^x\cos xdx\) by parts.</li>
+</ol>
+</div>
+</div>
+</div>
 <div id="outline-container-orga01cbcb" class="outline-3">
 <h3 id="orga01cbcb"><span class="section-number-3">1.4.</span> Definite Integrals</h3>
 <div class="outline-text-3" id="text-1-4">
