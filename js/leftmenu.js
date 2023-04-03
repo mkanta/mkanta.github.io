@@ -20,6 +20,9 @@
                          cont => {observer.observe(cont.firstElementChild);return cont;});
 
 })();
+// The Code:1 ends here
+
+// [[file:js.org::*The Code][The Code:2]]
 //attach this to the toc container
 //TODO: implement folding
 function anchorListener(evt){
@@ -32,16 +35,24 @@ function anchorListener(evt){
     evt.target.classList.add("on-display");
     /*
     Array.from(document.querySelectorAll(".top-left"),
-               divelt => {divelt.classList.remove("top-left"); return divelt;});
-    //href is the id of the headline, so its parent element is the container to be placed.*/
-    const currContainer=document.querySelector(evt.target.hash).parentElement
-    currContainer.scrollIntoView();
-    //currContainer.scrollTop=50; //doesn't seem to do anything
+               divelt => {divelt.classList.remove("top-left"); return divelt;});*/
+    //do this if the headline contains no anchor
+    //hash is the id of the headline, so its parent element is the container to be placed.
+    const currHead=document.querySelector(evt.target.hash);
+    const headLink=currHead.querySelector("a");
+    if(headLink!==null){
+        //follow href, or should this be href+"#"+tag? TODO:experiment
+        window.location.assign(headLink.href);
+    } else {
+        const currContainer=currHead.parentElement
+        currContainer.scrollIntoView();
+        //currContainer.scrollTop=50; //doesn't seem to do anything
+    }
     return false;
 }
-// The Code:1 ends here
+// The Code:2 ends here
 
-// [[file:js.org::*The Code][The Code:3]]
+// [[file:js.org::*The Code][The Code:4]]
 function reverseMenuHandler(entries,observer){
     entries.map(
         entry => {
@@ -61,10 +72,17 @@ function reverseMenuHandler(entries,observer){
                      anchor=> anchor.hash === ("#"+topHead.getAttribute("id")));
         activeToc.classList.remove("on-display");
         newToc.classList.add("on-display");
-    } else {//entries consists of elements that have left, at most one
+    } else {//no head in-root, entries consists of elements that have left, at most one
         if(entries[0].boundingClientRect.top > 0){
            //the entry has bottomed out, newToc should become the next one up
            const headParent=entries[0].target.parentElement;
+           //TODO: not quite right, if headParent.parentElement has children then
+           //the first in-root of those should be selected or the last one,
+            //ie headParent.parentElement.lastElementChild, if none
+           //is in-root, which is the case here. Otherwise this jumps
+           //too far. This should be recursive if headParent.parentElement.lastElementChild
+           //has children as well. Perhaps query headParent.parentElement for
+           //outline-container-org ids and pick the last of them as newToc.
            const prevHead=headParent.previousElementSibling!==null?headParent.previousElementSibling.firstElementChild
               :headParent.parentElement.firstElementChild;
            const newToc=Array.from(toc.querySelectorAll("a")).find(
@@ -79,4 +97,4 @@ function reverseMenuHandler(entries,observer){
         }
     }
 }
-// The Code:3 ends here
+// The Code:4 ends here
