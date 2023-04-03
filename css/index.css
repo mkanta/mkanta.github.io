@@ -1,0 +1,12 @@
+/* [[file:css.org::*Index Files][Index Files:1]] */
+h2 > a:link, a:visited {
+    text-decoration:none;
+    color: darkgreen;
+    background:gold;
+}
+h2 > a:hover, a:active {
+    text-decoration:none;
+    color: gold;;
+    background:darkgreen;
+}
+/* Index Files:1 ends here */
